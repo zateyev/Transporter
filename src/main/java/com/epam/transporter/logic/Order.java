@@ -1,53 +1,47 @@
 package com.epam.transporter.logic;
 
-import com.epam.transporter.entity.Cargo;
+import com.epam.transporter.entity.Goods;
 import com.epam.transporter.entity.DeliveryPoints;
 import com.epam.transporter.entity.TrucksPark;
 
 public class Order {
-
     private DeliveryPoints deliveryFromTo;
-    private Cargo cargo;
+    private Goods goods;
     private Integer price;
 
-    public Order(DeliveryPoints deliveryFromTo, Cargo cargo) {
+    public Order(DeliveryPoints deliveryFromTo, Goods goods) {
         this.deliveryFromTo = deliveryFromTo;
-        this.cargo = cargo;
+        this.goods = goods;
     }
 
     public Integer getPrice() {
         Integer tmp = 0;
-        if (cargo.getWeight()>=200&&cargo.getWeight()<1500) {
-            tmp = deliveryFromTo.calculateDistance()* TrucksPark.getParkOfTrucks().get(0).getPricePerKm();
+        if (goods.getWeight() >= 200 && goods.getWeight() < 1500) {
+            tmp = deliveryFromTo.calculateDistance() * TrucksPark.getTrucksList().get(0).getPricePerKm();
             price = tmp;
-        }
-        else if (cargo.getWeight()>=1500&&cargo.getWeight()<3000) {
-            tmp = deliveryFromTo.calculateDistance()* TrucksPark.getParkOfTrucks().get(2).getPricePerKm();
+        } else if (goods.getWeight() >= 1500 && goods.getWeight() < 3000) {
+            tmp = deliveryFromTo.calculateDistance() * TrucksPark.getTrucksList().get(2).getPricePerKm();
             price = tmp;
-        }
-        else if (cargo.getWeight()>=3000&&cargo.getWeight()<5000) {
-            tmp = deliveryFromTo.calculateDistance()* TrucksPark.getParkOfTrucks().get(3).getPricePerKm();
+        } else if (goods.getWeight() >= 3000 && goods.getWeight() < 5000) {
+            tmp = deliveryFromTo.calculateDistance() * TrucksPark.getTrucksList().get(3).getPricePerKm();
             price = tmp;
-        }
-        else if (cargo.getWeight()>=5000&&cargo.getWeight()<8000) {
-            tmp = deliveryFromTo.calculateDistance()* TrucksPark.getParkOfTrucks().get(1).getPricePerKm();
+        } else if (goods.getWeight() >= 5000 && goods.getWeight() < 8000) {
+            tmp = deliveryFromTo.calculateDistance() * TrucksPark.getTrucksList().get(1).getPricePerKm();
             price = tmp;
-        }
-        else if (cargo.getWeight()>=8000&&cargo.getWeight()<20000) {
-            tmp = deliveryFromTo.calculateDistance()* TrucksPark.getParkOfTrucks().get(4).getPricePerKm();
+        } else if (goods.getWeight() >= 8000 && goods.getWeight() < 20000) {
+            tmp = deliveryFromTo.calculateDistance() * TrucksPark.getTrucksList().get(4).getPricePerKm();
             price = tmp;
         }
         return price;
     }
 
-    public Cargo getCargo() {
-        return cargo;
+    public Goods getGoods() {
+        return goods;
     }
 
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
+    public void setGoods(Goods goods) {
+        this.goods = goods;
     }
-
 
     public DeliveryPoints getDeliveryFromTo() {
         return deliveryFromTo;

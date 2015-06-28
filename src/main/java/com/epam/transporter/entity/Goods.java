@@ -1,14 +1,13 @@
 package com.epam.transporter.entity;
 
-public class Cargo {
-
+public class Goods {
     private String name;
     private Integer weight;
     private Integer volume;
     private Integer cost;
     private String comment;
 
-    public Cargo(String name, int weight, int volume, int cost, String comment) {
+    public Goods(String name, int weight, int volume, int cost, String comment) {
         this.name = name;
         this.weight = weight;
         this.volume = volume;

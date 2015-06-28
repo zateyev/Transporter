@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.Properties;
 
 public class DeliveryPoints {
-
     private String startingPoint;
     private String destination;
     private int distance;
@@ -37,10 +36,10 @@ public class DeliveryPoints {
                 ResultSet rs = null;
                 try {
                     rs = st.executeQuery("select distance from distance where id_city1 in" +
-                            "(select id_city from cities where city='"+startingPoint+"')\n" +
-                            "and id_city2 in (select id_city from cities where city='"+destination+"')\n" +
-                            "or id_city1 in (select id_city from cities where city='"+destination+"')\n" +
-                            "and id_city2 in (select id_city from cities where city='"+startingPoint+"')");
+                            "(select id_city from cities where city='" + startingPoint + "')\n" +
+                            "and id_city2 in (select id_city from cities where city='" + destination + "')\n" +
+                            "or id_city1 in (select id_city from cities where city='" + destination + "')\n" +
+                            "and id_city2 in (select id_city from cities where city='" + startingPoint + "')");
                     while (rs.next()) {
                         distance = rs.getInt(1);
                     }

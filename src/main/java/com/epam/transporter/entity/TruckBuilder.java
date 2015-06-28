@@ -1,10 +1,6 @@
 package com.epam.transporter.entity;
 
-/**
- * Created by Жасулан on 31.05.2015.
- */
 public class TruckBuilder {
-
     private String model;
     private Integer capacityByWeight;
     private Integer capacityByVolume;
