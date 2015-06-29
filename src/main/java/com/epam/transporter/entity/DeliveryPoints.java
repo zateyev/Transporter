@@ -45,7 +45,6 @@ public class DeliveryPoints {
         prop.put("characterEncoding", "UTF-8");
         prop.put("useUnicode", "true");
         Connection cn = null;
-        //DriverManager.registerDriver(new com.mysql.jdbc.Driver());
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             cn = DriverManager.getConnection(url, prop);

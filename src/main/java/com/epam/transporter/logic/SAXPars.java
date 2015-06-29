@@ -42,7 +42,7 @@ public class SAXPars extends DefaultHandler {
         if (this.element.equals("DeliveryPoints")) {
             deliveryPoints = new DeliveryPoints();
         }
-        if (this.element.equals("startingPoint")) {
+        if (this.element.equals("strartingPoint")) {
             deliveryPoints.setStartingPoint(new String(ch, start, length));
         }
         if (this.element.equals("destination")) {
