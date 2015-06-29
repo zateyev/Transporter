@@ -7,6 +7,9 @@ public class Goods {
     private Integer cost;
     private String comment;
 
+    public Goods() {
+    }
+
     public Goods(String name, int weight, int volume, int cost, String comment) {
         this.name = name;
         this.weight = weight;
@@ -27,7 +30,7 @@ public class Goods {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 

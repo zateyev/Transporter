@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Order>
     <DeliveryPoints>
-        <strartingPoint>Astana</strartingPoint>
-        <destination>Karaganda</destination>
-        <distance>300</distance>
+        <strartingPoint>Астана</strartingPoint>
+        <destination>Караганды</destination>
     </DeliveryPoints>
     <Goods>
-        <name>Apple</name>
-        <weight>1000</weight>
+        <name>Цемент</name>
+        <weight>5300</weight>
         <volume>1000</volume>
-        <cost>100000</cost>
-        <comment>Aport</comment>
+        <cost>30000</cost>
+        <comment>Цемент</comment>
     </Goods>
-    <price>50000</price>
 </Order>

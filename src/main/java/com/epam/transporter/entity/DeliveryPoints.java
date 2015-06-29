@@ -8,8 +8,27 @@ public class DeliveryPoints {
     private String destination;
     private int distance;
 
+    public DeliveryPoints() {
+    }
+
     public DeliveryPoints(String startingPoint, String destination) {
         this.startingPoint = startingPoint;
+        this.destination = destination;
+    }
+
+    public String getStartingPoint() {
+        return startingPoint;
+    }
+
+    public void setStartingPoint(String startingPoint) {
+        this.startingPoint = startingPoint;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
         this.destination = destination;
     }
 
