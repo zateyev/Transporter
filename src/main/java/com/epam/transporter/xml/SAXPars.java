@@ -1,7 +1,8 @@
-package com.epam.transporter.logic;
+package com.epam.transporter.xml;
 
 import com.epam.transporter.entity.DeliveryPoints;
 import com.epam.transporter.entity.Goods;
+import com.epam.transporter.logic.Order;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

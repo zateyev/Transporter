@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:trucks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xs="http://www.epam.com/trucks"
+             xsi:schemaLocation="http://www.epam.com/trucks park.xsd">
+    <truck>
+        <model>Газель</model>
+        <capacityByWeight>1500</capacityByWeight>
+        <capacityByVolume>9</capacityByVolume>
+        <pricePerKm>30</pricePerKm>
+    </truck>
+    <truck>
+        <model>Scania</model>
+        <capacityByWeight>8000</capacityByWeight>
+        <capacityByVolume>56</capacityByVolume>
+        <pricePerKm>70</pricePerKm>
+    </truck>
+    <truck>
+        <model>Foton</model>
+        <capacityByWeight>3000</capacityByWeight>
+        <capacityByVolume>20</capacityByVolume>
+        <pricePerKm>50</pricePerKm>
+    </truck>
+    <truck>
+        <model>Газель</model>
+        <capacityByWeight>1500</capacityByWeight>
+        <capacityByVolume>9</capacityByVolume>
+        <pricePerKm>30</pricePerKm>
+    </truck>
+    <truck>
+        <model>Daf</model>
+        <capacityByWeight>20000</capacityByWeight>
+        <capacityByVolume>100</capacityByVolume>
+        <pricePerKm>100</pricePerKm>
+    </truck>
+</xs:trucks>
