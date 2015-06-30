@@ -20,7 +20,6 @@
     <xs:sequence>
       <xs:element type="xs:string" name="strartingPoint"/>
       <xs:element type="xs:string" name="destination"/>
-      <xs:element type="xs:string" name="distance"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
