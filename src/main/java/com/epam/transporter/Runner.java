@@ -5,6 +5,7 @@ import com.epam.transporter.entity.Goods;
 import com.epam.transporter.logic.Order;
 import com.epam.transporter.logic.Price;
 import com.epam.transporter.xml.SAXPars;
+import com.epam.transporter.xml.TruckErrorHandler;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -24,15 +25,17 @@ public class Runner {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         String fileName = "C:\\Users\\Жасулан\\IdeaProjects\\Transporter\\src\\main\\resources\\park.xml";
         String schemaName = "C:\\Users\\Жасулан\\IdeaProjects\\Transporter\\src\\main\\resources\\park.xsd";
+        String logName = "D:\\log.txt";
+        Schema schema;
         SchemaFactory factory = SchemaFactory.newInstance(language);
-        File schemaLocation = new File(schemaName);
         try {
-            Schema schema = factory.newSchema(schemaLocation);
-            Validator validator = schema.newValidator();
-            Source source = new StreamSource(fileName);
-            validator.validate(source);
-            System.out.println(fileName + " is valid.");
-        } catch (SAXException | IOException e) {
+            schema = factory.newSchema(new File(schemaName));
+            SAXParserFactory spf = SAXParserFactory.newInstance();
+            spf.setSchema(schema);
+            SAXParser parser = spf.newSAXParser();
+            parser.parse(fileName, new TruckErrorHandler(logName));
+            System.out.println(fileName + " is valid");
+        } catch (SAXException | ParserConfigurationException | IOException e) {
             e.printStackTrace();
         }
 //        DeliveryPoints deliveryFromTo = new DeliveryPoints("Астана", "Караганды");
