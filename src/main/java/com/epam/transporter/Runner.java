@@ -19,12 +19,15 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 public class Runner {
+
     public static void main(String[] args) {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-        String fileName = "C:\\Users\\Жасулан\\IdeaProjects\\Transporter\\src\\main\\resources\\park.xml";
-        String schemaName = "C:\\Users\\Жасулан\\IdeaProjects\\Transporter\\src\\main\\resources\\park.xsd";
+        String fileName = "C:\\Users\\Жасулан\\IdeaProjects\\Transporter\\src\\main\\resources\\trucks.xml";
+        String schemaName = "C:\\Users\\Жасулан\\IdeaProjects\\Transporter\\src\\main\\resources\\trucks.xsd";
         String logName = "D:\\log.txt";
         Schema schema;
         SchemaFactory factory = SchemaFactory.newInstance(language);

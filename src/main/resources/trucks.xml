@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<trucks>
+<trucks xmlns="http://www.epam.com/trucks"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.epam.com/trucks http://www.epam.com/trucks/trucks.xsd">
     <truck>
+        <uuid>12345678-1234-1234-1234-123412341231</uuid>
         <model>Газель</model>
         <capacityByWeight>1500</capacityByWeight>
         <capacityByVolume>9</capacityByVolume>
         <pricePerKm>30</pricePerKm>
+        <manufactureDate>2001-10-03</manufactureDate>
     </truck>
     <truck>
+        <uuid>12345678-1234-1234-1234-123412341232</uuid>
         <model>Scania</model>
         <capacityByWeight>8000</capacityByWeight>
         <capacityByVolume>56</capacityByVolume>
         <pricePerKm>70</pricePerKm>
+        <manufactureDate>2001-10-03</manufactureDate>
     </truck>
     <truck>
+        <uuid>12345678-1234-1234-1234-123412341233</uuid>
         <model>Foton</model>
         <capacityByWeight>3000</capacityByWeight>
         <capacityByVolume>20</capacityByVolume>
         <pricePerKm>50</pricePerKm>
+        <manufactureDate>2001-10-03</manufactureDate>
     </truck>
     <truck>
+        <uuid>12345678-1234-1234-1234-123412341234</uuid>
         <model>Газель</model>
         <capacityByWeight>1500</capacityByWeight>
         <capacityByVolume>9</capacityByVolume>
         <pricePerKm>30</pricePerKm>
+        <manufactureDate>2001-10-03</manufactureDate>
     </truck>
     <truck>
+        <uuid>12345678-1234-1234-1234-123412341235</uuid>
         <model>Daf</model>
         <capacityByWeight>20000</capacityByWeight>
         <capacityByVolume>100</capacityByVolume>
         <pricePerKm>100</pricePerKm>
+        <manufactureDate>2001-10-03</manufactureDate>
     </truck>
 </trucks>
