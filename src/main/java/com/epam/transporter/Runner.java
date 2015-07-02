@@ -6,6 +6,7 @@ import com.epam.transporter.logic.Order;
 import com.epam.transporter.logic.Price;
 import com.epam.transporter.xml.SAXPars;
 import com.epam.transporter.xml.TruckErrorHandler;
+import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -23,29 +24,29 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class Runner {
+    static Logger logger = Logger.getLogger(Runner.class);
 
     public static void main(String[] args) {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-        String fileName = "C:\\Users\\Жасулан\\IdeaProjects\\Transporter\\src\\main\\resources\\trucks.xml";
-        String schemaName = "C:\\Users\\Жасулан\\IdeaProjects\\Transporter\\src\\main\\resources\\trucks.xsd";
-        String logName = "D:\\log.txt";
-        Schema schema;
-        SchemaFactory factory = SchemaFactory.newInstance(language);
+        URL xsdUrl = Runner.class.getClassLoader().getResource(args[0]);
+        URL xmlUrl = Runner.class.getClassLoader().getResource(args[1]);
+        InputStream xmlIn = Runner.class.getClassLoader().getResourceAsStream(args[1]);
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(language);
         try {
-            schema = factory.newSchema(new File(schemaName));
+            Schema schema = schemaFactory.newSchema(xsdUrl);
             SAXParserFactory spf = SAXParserFactory.newInstance();
+            spf.setNamespaceAware(true);
             spf.setSchema(schema);
             SAXParser parser = spf.newSAXParser();
-            parser.parse(fileName, new TruckErrorHandler(logName));
-            System.out.println(fileName + " is valid");
+            parser.parse(xmlIn, new TruckErrorHandler());
+            logger.info(xmlUrl + " file is valid");
         } catch (SAXException | ParserConfigurationException | IOException e) {
-            e.printStackTrace();
+            logger.error(xmlUrl + " validation failed!", e);
         }
 //        DeliveryPoints deliveryFromTo = new DeliveryPoints("Астана", "Караганды");
 //        System.out.println(deliveryFromTo.calculateDistance());
 //        Goods goods = new Goods("Цемент", 5300, 1000, 30000, "");
 //        Order order = new Order(deliveryFromTo, goods);
-
 //        SAXParserFactory parserF = SAXParserFactory.newInstance();
 //        SAXPars saxPars = new SAXPars();
 //        try {

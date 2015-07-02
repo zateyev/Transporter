@@ -9,10 +9,9 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.io.IOException;
 
 public class TruckErrorHandler extends DefaultHandler {
-    private Logger logger = Logger.getLogger("com.epam.transporter.xml");
+    private static Logger logger = Logger.getLogger(TruckErrorHandler.class);
 
-    public TruckErrorHandler(String log) throws IOException {
-        logger.addAppender(new FileAppender(new SimpleLayout(), log));
+    public TruckErrorHandler() throws IOException {
     }
 
     public void warning(SAXParseException e) {
