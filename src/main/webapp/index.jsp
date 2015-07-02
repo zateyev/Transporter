@@ -5,9 +5,19 @@
 </head>
 <body>
 <form action="upload" method="post" enctype="multipart/form-data">
-    <input type="text" name="description" />
-    <input type="file" name="file" />
-    <input type="submit" />
+    <div>
+        <input type="text" name="description" placeholder="Выберите xml-файл" />
+        <input type="file" name="file" />
+    </div>
+    <br>
+    <div>
+        <input type="text" name="xsd-description" placeholder="Выберите xsd-файл" />
+        <input type="file" name="xsd-file" />
+    </div>
+    <br>
+    <div>
+        <input type="submit" />
+    </div>
 </form>
 </body>
 </html>
