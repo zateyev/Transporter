@@ -38,33 +38,34 @@ public class OrderSaxParser implements Parser {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            if (this.element.equals("deliveryPoints")) {
-                order.setDeliveryFromTo(deliveryPoints);
-            }
-            if (this.element.equals("goods")) {
-                order.setGoods(goods);
-            }
-
-            if (this.element.equals("strartingPoint")) {
-                deliveryPoints.setStartingPoint(sb.toString());
-            }
-            if (this.element.equals("destination")) {
-                deliveryPoints.setDestination(sb.toString());
-            }
-            if (this.element.equals("name")) {
-                goods.setName(sb.toString());
-            }
-            if (this.element.equals("weight")) {
-                goods.setWeight(new Integer(sb.toString()));
-            }
-            if (this.element.equals("volume")) {
-                goods.setVolume(new Integer(sb.toString()));
-            }
-            if (this.element.equals("cost")) {
-                goods.setCost(new Integer(sb.toString()));
-            }
-            if (this.element.equals("comment")) {
-                goods.setComment(sb.toString());
+            switch (this.element) {
+                case "deliveryPoints":
+                    order.setDeliveryFromTo(deliveryPoints);
+                    break;
+                case "goods":
+                    order.setGoods(goods);
+                    break;
+                case "strartingPoint":
+                    deliveryPoints.setStartingPoint(sb.toString());
+                    break;
+                case "destination":
+                    deliveryPoints.setDestination(sb.toString());
+                    break;
+                case "name":
+                    goods.setName(sb.toString());
+                    break;
+                case "weight":
+                    goods.setWeight(new Integer(sb.toString()));
+                    break;
+                case "volume":
+                    goods.setVolume(new Integer(sb.toString()));
+                    break;
+                case "cost":
+                    goods.setCost(new Integer(sb.toString()));
+                    break;
+                case "comment":
+                    goods.setComment(sb.toString());
+                    break;
             }
             element = "";
         }
