@@ -1,23 +1,12 @@
 package com.epam.transporter;
 
-import com.epam.transporter.xml.TruckErrorHandler;
-import org.apache.log4j.Logger;
-import org.xml.sax.SAXException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.xml.XMLConstants;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import java.io.*;
-import java.net.URL;
 
 @WebServlet("/upload")
 @MultipartConfig

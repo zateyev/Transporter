@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Order>
-    <DeliveryPoints>
+<order>
+    <deliveryPoints>
         <strartingPoint>Астана</strartingPoint>
         <destination>Караганды</destination>
-    </DeliveryPoints>
-    <Goods>
+    </deliveryPoints>
+    <goods>
         <name>Цемент</name>
         <weight>5300</weight>
         <volume>1000</volume>
         <cost>30000</cost>
         <comment>Цемент</comment>
-    </Goods>
-</Order>
+    </goods>
+</order>
