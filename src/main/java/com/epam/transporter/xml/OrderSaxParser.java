@@ -7,17 +7,36 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 public class OrderSaxParser implements Parser {
     @Override
     public Order parseOrder(InputStream inputStream) {
-        return null;
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser saxParser;
+        Order order = null;
+        try {
+            saxParser = factory.newSAXParser();
+            OrderHandler handler = new OrderHandler();
+            saxParser.parse(inputStream, handler);
+            order = handler.getOrder();
+        } catch (ParserConfigurationException | SAXException | IOException ignored) {
+        }
+        return order;
     }
 
     public static class OrderHandler extends DefaultHandler {
+        Method[] orderMethods = Order.class.getMethods();
+        Method[] deliveryPointsMethods = DeliveryPoints.class.getMethods();
+        Method[] goodsMethods = Goods.class.getMethods();
         private Map<String, String> currentElement = new HashMap<>();
         private Order order = new Order();
         private DeliveryPoints deliveryPoints = new DeliveryPoints();
@@ -53,36 +72,63 @@ public class OrderSaxParser implements Parser {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            switch (this.element) {
-                case "deliveryPoints":
-                    order.setDeliveryFromTo(deliveryPoints);
-                    break;
-                case "goods":
-                    order.setGoods(goods);
-                    break;
-                case "strartingPoint":
-                    deliveryPoints.setStartingPoint(sb.toString());
-                    break;
-                case "destination":
-                    deliveryPoints.setDestination(sb.toString());
-                    break;
-                case "name":
-                    goods.setName(sb.toString());
-                    break;
-                case "weight":
-                    goods.setWeight(new Integer(sb.toString()));
-                    break;
-                case "volume":
-                    goods.setVolume(new Integer(sb.toString()));
-                    break;
-                case "cost":
-                    goods.setCost(new Integer(sb.toString()));
-                    break;
-                case "comment":
-                    goods.setComment(sb.toString());
-                    break;
+            for (Method method : deliveryPointsMethods) {
+                if (currentElement.get(this.element).equals(method.getName())) {
+                    try {
+                        method.invoke(deliveryPoints, sb.toString());
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-            element = "";
+            for (Method method : goodsMethods) {
+                if (currentElement.get(this.element).equals(method.getName())) {
+                    try {
+                        method.invoke(goods, sb.toString());
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            for (Method method : orderMethods) {
+                if (currentElement.get(this.element).equals(method.getName())) {
+                    try {
+                        method.invoke(order, deliveryPoints);
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+//            switch (this.element) {
+//                case "deliveryPoints":
+//                    order.setDeliveryFromTo(deliveryPoints);
+//                    break;
+//                case "goods":
+//                    order.setGoods(goods);
+//                    break;
+//                case "strartingPoint":
+//                    deliveryPoints.setStartingPoint(sb.toString());
+//                    break;
+//                case "destination":
+//                    deliveryPoints.setDestination(sb.toString());
+//                    break;
+//                case "name":
+//                    goods.setName(sb.toString());
+//                    break;
+//                case "weight":
+//                    goods.setWeight(new Integer(sb.toString()));
+//                    break;
+//                case "volume":
+//                    goods.setVolume(new Integer(sb.toString()));
+//                    break;
+//                case "cost":
+//                    goods.setCost(new Integer(sb.toString()));
+//                    break;
+//                case "comment":
+//                    goods.setComment(sb.toString());
+//                    break;
+//            }
+            //element = "";
         }
 
         @Override
