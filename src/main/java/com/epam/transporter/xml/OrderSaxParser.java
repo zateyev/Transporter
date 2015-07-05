@@ -8,6 +8,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrderSaxParser implements Parser {
     @Override
@@ -16,11 +18,24 @@ public class OrderSaxParser implements Parser {
     }
 
     public static class OrderHandler extends DefaultHandler {
+        private Map<String, String> currentElement = new HashMap<>();
         private Order order = new Order();
         private DeliveryPoints deliveryPoints = new DeliveryPoints();
         private Goods goods = new Goods();
         private StringBuilder sb = new StringBuilder();
         private String element = "";
+
+        {
+            currentElement.put("deliveryPoints", "setDeliveryFromTo");
+            currentElement.put("goods", "setGoods");
+            currentElement.put("strartingPoint", "setStartingPoint");
+            currentElement.put("destination", "setDestination");
+            currentElement.put("name", "setName");
+            currentElement.put("weight", "setWeight");
+            currentElement.put("volume", "setVolume");
+            currentElement.put("cost", "setCost");
+            currentElement.put("comment", "setComment");
+        }
 
         public Order getOrder() {
             return order;
