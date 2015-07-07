@@ -1,15 +1,18 @@
 package com.epam.transporter.entity;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import com.mysql.jdbc.*;
+import com.mysql.jdbc.Driver;
+
+import javax.xml.bind.annotation.*;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Properties;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "DeliveryPointsType", propOrder = {
-        "strartingPoint",
+@XmlType(name = "deliveryPoints", propOrder = {
+        "startingPoint",
         "destination"
 })
 public class DeliveryPoints {
@@ -17,6 +20,7 @@ public class DeliveryPoints {
     private String startingPoint;
     @XmlElement(required = true)
     private String destination;
+    @XmlTransient
     private int distance;
 
     public DeliveryPoints() {
@@ -57,7 +61,7 @@ public class DeliveryPoints {
         prop.put("useUnicode", "true");
         Connection cn = null;
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            DriverManager.registerDriver(new Driver());
             cn = DriverManager.getConnection(url, prop);
             Statement st = null;
             try {

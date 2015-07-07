@@ -1,22 +1,11 @@
 package com.epam.transporter;
 
+import com.epam.transporter.entity.DeliveryPoints;
+import com.epam.transporter.entity.Goods;
 import com.epam.transporter.logic.Order;
 import com.epam.transporter.logic.Price;
-import com.epam.transporter.xml.OrderSaxParser;
-import com.epam.transporter.xml.TruckErrorHandler;
+import com.epam.transporter.xml.MarshalOrder;
 import org.apache.log4j.Logger;
-import org.xml.sax.SAXException;
-
-import javax.xml.XMLConstants;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 public class Runner {
     static Logger logger = Logger.getLogger(Runner.class);
@@ -41,16 +30,19 @@ public class Runner {
 //        }
 
 
-//        DeliveryPoints deliveryFromTo = new DeliveryPoints("Астана", "Караганды");
-//        System.out.println(deliveryFromTo.calculateDistance());
-//        Goods goods = new Goods("Цемент", 5300, 1000, 30000, "");
-//        Order order = new Order(deliveryFromTo, goods);
+        DeliveryPoints deliveryFromTo = new DeliveryPoints("Астана", "Караганды");
+        System.out.println(deliveryFromTo.calculateDistance());
+        Goods goods = new Goods("Цемент", 5300, 1000, 30000, "");
+        Order order = new Order(deliveryFromTo, goods);
 
-        OrderSaxParser orderSaxParser = new OrderSaxParser();
-        InputStream xmlIn = Runner.class.getClassLoader().getResourceAsStream("order.xml");
-        Order order = orderSaxParser.parseOrder(xmlIn);
-
+        //OrderSaxParser
+//        OrderSaxParser orderSaxParser = new OrderSaxParser();
+//        InputStream xmlIn = Runner.class.getClassLoader().getResourceAsStream("order.xml");
+//        Order order = orderSaxParser.parseOrder(xmlIn);
+//
         Price price = new Price(order);
         System.out.println(price.getPrice());
+        MarshalOrder marshalOrder = new MarshalOrder();
+        marshalOrder.convertToXml(order);
     }
 }

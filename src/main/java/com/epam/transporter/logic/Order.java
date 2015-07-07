@@ -4,15 +4,16 @@ import com.epam.transporter.entity.DeliveryPoints;
 import com.epam.transporter.entity.Goods;
 import javax.xml.bind.annotation.*;
 
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "OrderType", propOrder = {
+@XmlType(name = "Order", propOrder = {
         "deliveryFromTo",
         "goods"
 })
 public class Order {
-    @XmlElement(name = "DeliveryPoints", required = true)
+    @XmlElement(name = "deliveryPoints", required = true)
     private DeliveryPoints deliveryFromTo;
-    @XmlElement(name = "Goods", required = true)
+    @XmlElement(name = "goods", required = true)
     private Goods goods;
 
     public Order() {
