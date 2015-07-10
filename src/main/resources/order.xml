@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <order>
     <deliveryPoints>
-        <strartingPoint>Астана</strartingPoint>
+        <startingPoint>Астана</startingPoint>
         <destination>Караганды</destination>
     </deliveryPoints>
     <goods>

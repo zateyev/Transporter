@@ -47,7 +47,7 @@ public class OrderSaxParser implements Parser {
         {
             currentElement.put("deliveryPoints", "setDeliveryFromTo");
             currentElement.put("goods", "setGoods");
-            currentElement.put("strartingPoint", "setStartingPoint");
+            currentElement.put("startingPoint", "setStartingPoint");
             currentElement.put("destination", "setDestination");
             currentElement.put("name", "setName");
             currentElement.put("weight", "setWeight");
@@ -93,7 +93,8 @@ public class OrderSaxParser implements Parser {
             for (Method method : orderMethods) {
                 if (currentElement.get(this.element).equals(method.getName())) {
                     try {
-                        method.invoke(order, deliveryPoints);
+                        if (method.getName().equals("setDeliveryFromTo")) method.invoke(order, deliveryPoints);
+                        else method.invoke(order, goods);
                     } catch (IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
                     }

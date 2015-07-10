@@ -18,7 +18,7 @@
   </xs:complexType>
   <xs:complexType name="DeliveryPointsType">
     <xs:sequence>
-      <xs:element type="xs:string" name="strartingPoint"/>
+      <xs:element type="xs:string" name="startingPoint"/>
       <xs:element type="xs:string" name="destination"/>
     </xs:sequence>
   </xs:complexType>
