@@ -1,5 +1,7 @@
 package com.epam.transporter;
 
+import com.epam.transporter.entity.Customer;
+import com.epam.transporter.entity.CustomerManager;
 import com.epam.transporter.entity.DeliveryPoints;
 import com.epam.transporter.entity.Goods;
 import com.epam.transporter.logic.Order;
@@ -47,7 +49,7 @@ public class Runner {
 //        MarshalOrder marshalOrder = new MarshalOrder();
 //        marshalOrder.convertToXml(order);
 
-
-
+        Customer customer = new CustomerManager().findCustomerByEmail("zhasulan@mail.com");
+        System.out.println(customer.getPassword());
     }
 }

@@ -29,8 +29,13 @@ public class Login extends MainServlet {
         }
         else {
             customer.setLogged(false);
-            request.getSession().setAttribute("user", customer);
-            response.sendRedirect("/login.jsp");
+
+            request.setAttribute("customer", customer);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+
+            /*request.getSession().setAttribute("user", customer);
+            response.sendRedirect("/login.jsp");*/
         }
     }
 }

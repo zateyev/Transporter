@@ -8,12 +8,15 @@ public class CustomerManager {
         customer.setEmail(email);
         try {
             Class.forName("org.h2.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/transporter, transporter, transporter");
+            String url = "jdbc:h2:tcp://localhost/~/transporter";
+            Connection connection = DriverManager.getConnection(url, "transporter", "transporter");
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMERS WHERE EMAIL = ?");
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
-            String password = resultSet.getString("PASSWORD");
-            customer.setPassword(password);
+            while (resultSet.next()) {
+                String password = resultSet.getString("PASSWORD");
+                customer.setPassword(password);
+            }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
