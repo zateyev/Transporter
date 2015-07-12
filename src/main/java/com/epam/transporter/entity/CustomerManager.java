@@ -15,7 +15,9 @@ public class CustomerManager {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String password = resultSet.getString("PASSWORD");
+                String firstName = resultSet.getString("FIRSTNAME");
                 customer.setPassword(password);
+                customer.setFirstName(firstName);
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

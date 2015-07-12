@@ -5,6 +5,6 @@
     <title>WELCOME</title>
 </head>
 <body>
-  <p>Welcome to welcome page</p>
+  <p>Welcome, ${customer.firstName}</p>
 </body>
 </html>
