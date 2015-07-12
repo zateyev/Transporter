@@ -7,10 +7,19 @@
 
     <servlet>
         <servlet-name>MainServlet</servlet-name>
-        <servlet-class>com.epam.transporter.MainServlet</servlet-class>
+        <servlet-class>com.epam.transporter.servlet.MainServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 </web-app>

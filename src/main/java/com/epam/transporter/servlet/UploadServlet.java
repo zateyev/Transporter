@@ -1,4 +1,4 @@
-package com.epam.transporter;
+package com.epam.transporter.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

@@ -1,4 +1,4 @@
 package com.epam.transporter.entity;
 
-public class Admin extends Users {
+public class Admin extends User {
 }

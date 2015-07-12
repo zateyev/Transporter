@@ -1,23 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title></title>
+  <meta charset="UTF-8">
+  <title>Log in</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<form action="upload" method="post" enctype="multipart/form-data">
-    <div>
-        <input type="text" name="description" placeholder="Выберите xml-файл" />
-        <input type="file" name="file" />
-    </div>
-    <br>
-    <div>
-        <input type="text" name="xsd-description" placeholder="Выберите xsd-файл" />
-        <input type="file" name="xsd-file" />
-    </div>
-    <br>
-    <div>
-        <input type="submit" />
-    </div>
+<form action="${pageContext.request.contextPath}/login" method="post" class="form">
+  <label>login</label>
+  <input type="text" placeholder="email">
+  <input type="password" placeholder="password">
+  <button>Log in</button>
 </form>
 </body>
 </html>

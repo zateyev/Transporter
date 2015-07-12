@@ -33,18 +33,21 @@ public class Runner {
 //        }
 
 
-//        DeliveryPoints deliveryFromTo = new DeliveryPoints("Астана", "Караганды");
-//        System.out.println(deliveryFromTo.calculateDistance());
-//        Goods goods = new Goods("Цемент", 5300, 1000, 30000, "");
-//        Order order = new Order(deliveryFromTo, goods);
+        DeliveryPoints deliveryFromTo = new DeliveryPoints("Астана", "Караганды");
+        System.out.println(deliveryFromTo.calculateDistance());
+        Goods goods = new Goods("Цемент", 5300, 1000, 30000, "");
+        Order order = new Order(deliveryFromTo, goods);
 
-        OrderSaxParser orderSaxParser = new OrderSaxParser();
+        /*OrderSaxParser orderSaxParser = new OrderSaxParser();
         InputStream xmlIn = Runner.class.getClassLoader().getResourceAsStream("order.xml");
-        Order order = orderSaxParser.parseOrder(xmlIn);
+        Order order = orderSaxParser.parseOrder(xmlIn);*/
 
         Price price = new Price(order);
         System.out.println(price.getPrice());
 //        MarshalOrder marshalOrder = new MarshalOrder();
 //        marshalOrder.convertToXml(order);
+
+
+
     }
 }
