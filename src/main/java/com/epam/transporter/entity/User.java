@@ -7,6 +7,7 @@ public abstract class User {
     private String email;
     private String login;
     private String password;
+    private long id;
 
     public String getFirstName() {
         return firstName;
@@ -54,5 +55,13 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
