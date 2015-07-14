@@ -19,7 +19,6 @@ public class JdbcDaoFactory extends DaoFactory {
     }
 
     public static Connection createConnection() {
-        //ConnectionPool connectionPool = ConnectionPool.getInstance(DRIVER_NAME, URL, USER, PASSWORD, MAX_CONNECTION);
         return connectionPool.getConnection();
     }
 
