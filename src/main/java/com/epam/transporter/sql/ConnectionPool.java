@@ -9,15 +9,15 @@ import java.util.List;
 
 public class ConnectionPool {
     private static ConnectionPool instance;
-    private final String DRIVER_NAME;
+    private String driverName;
     private List<Connection> freeConnections = new ArrayList<>();
     private String url;
     private String user;
     private String password;
     private int maxConnection;
 
-    private ConnectionPool(String DRIVER_NAME, String url, String user, String password, int maxConnection) {
-        this.DRIVER_NAME = DRIVER_NAME;
+    private ConnectionPool(String driverName, String url, String user, String password, int maxConnection) {
+        this.driverName = driverName;
         this.url = url;
         this.user = user;
         this.password = password;
@@ -34,7 +34,7 @@ public class ConnectionPool {
 
     private void loadDrivers() {
         try {
-            Driver driver = (Driver) Class.forName(DRIVER_NAME).newInstance();
+            Driver driver = (Driver) Class.forName(this.driverName).newInstance();
             DriverManager.registerDriver(driver);
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
             throw new ConnectionPoolException();
@@ -44,7 +44,7 @@ public class ConnectionPool {
     public synchronized Connection getConnection() {
         Connection connection;
         if (!freeConnections.isEmpty()) {
-            connection = (Connection) freeConnections.get(freeConnections.size() - 1);
+            connection = freeConnections.get(freeConnections.size() - 1);
             freeConnections.remove(connection);
             try {
                 if (connection.isClosed()) {

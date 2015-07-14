@@ -9,13 +9,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JdbcCustomerDao implements CustomerDao {
-    private ConnectionPool connectionPool;
+
+    public JdbcCustomerDao() {
+    }
+
     @Override
     public Customer findById(long id) {
         ResultSet resultSet;
         PreparedStatement preparedStatement;
+        Connection connection = JdbcDaoFactory.createConnection();
         try {
-            Connection connection = connectionPool.getConnection();
             preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD FROM CUSTOMER WHERE ID = ?");
             preparedStatement.setLong(1, id);
             resultSet = preparedStatement.executeQuery();
@@ -29,7 +32,7 @@ public class JdbcCustomerDao implements CustomerDao {
         } catch (SQLException e) {
             throw new DaoException();
         } finally {
-            connectionPool.release();//TODO up to the end
+            //TODO up to the end
         }
     }
 
@@ -49,7 +52,7 @@ public class JdbcCustomerDao implements CustomerDao {
 
     @Override
     public Customer insert(Customer customer) {
-        Connection connection = connectionPool.getConnection();
+        Connection connection = JdbcDaoFactory.createConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO CUSTOMER (ID, FIRSTNAME, EMAIL, PASSWORD) VALUES (DEFAULT, ?, ?, ?)");

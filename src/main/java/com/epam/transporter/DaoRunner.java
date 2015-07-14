@@ -6,8 +6,8 @@ import com.epam.transporter.entity.Customer;
 
 public class DaoRunner {
     public static void main(String[] args) {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        CustomerDao customerDao = daoFactory.newCustomerDao();
+        DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
+        CustomerDao customerDao = jdbcDaoFactory.getCustomerDao();
         Customer customer = customerDao.findById(1L);
         customerDao.update(customer);
         customerDao.save(customer);
