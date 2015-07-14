@@ -75,19 +75,20 @@ public class JdbcCustomerDao implements CustomerDao {
     @Override
     public Customer insert(Customer customer) {
         Connection connection = JdbcDaoFactory.createConnection();
+        PreparedStatement preparedStatement;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            preparedStatement = connection.prepareStatement(
                     "INSERT INTO CUSTOMER (ID, FIRSTNAME, EMAIL, PASSWORD) VALUES (DEFAULT, ?, ?, ?)");
             preparedStatement.setString(1, customer.getFirstName());
             preparedStatement.setString(2, customer.getEmail());
             preparedStatement.setString(3, customer.getPassword());
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             generatedKeys.next();
             long id = generatedKeys.getLong(1);
             customer.setId(id);
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         }
         return customer;
     }

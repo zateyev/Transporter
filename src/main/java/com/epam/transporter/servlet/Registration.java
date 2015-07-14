@@ -10,30 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Login extends MainServlet {
+public class Registration extends MainServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String firstName = request.getParameter("firstName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        Customer customer = new Customer();
+        customer.setFirstName(firstName);
+        customer.setEmail(email);
+        customer.setPassword(password);
 
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
         CustomerDao jdbcCustomerDao = jdbcDaoFactory.getCustomerDao();
-        Customer customer = jdbcCustomerDao.findByEmail(email);
+        jdbcCustomerDao.insert(customer);
 
-        if (customer.getPassword().equals(password)) {
-            customer.setLogged(true);
-
-            request.setAttribute("customer", customer);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/welcome.jsp");
-            dispatcher.forward(request, response);
-        }
-        else {
-            customer.setLogged(false);
-
-            request.setAttribute("customer", customer);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            dispatcher.forward(request, response);
-        }
+        request.setAttribute("customer", customer);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/confirmation.jsp");
+        dispatcher.forward(request, response);
     }
 }
