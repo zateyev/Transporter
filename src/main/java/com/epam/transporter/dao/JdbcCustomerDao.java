@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.epam.transporter.dao.JdbcDaoFactory.*;
+import static com.epam.transporter.dao.JdbcDaoFactory.freeConnection;
+
 public class JdbcCustomerDao implements CustomerDao {
 
     public JdbcCustomerDao() {
@@ -16,7 +19,7 @@ public class JdbcCustomerDao implements CustomerDao {
     public Customer findById(long id) {
         ResultSet resultSet;
         PreparedStatement preparedStatement;
-        Connection connection = JdbcDaoFactory.createConnection();
+        Connection connection = createConnection();
         try {
             preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD FROM CUSTOMER WHERE ID = ?");
             preparedStatement.setLong(1, id);
@@ -31,7 +34,7 @@ public class JdbcCustomerDao implements CustomerDao {
         } catch (SQLException e) {
             throw new DaoException();
         } finally {
-            //TODO up to the end
+            freeConnection(connection);
         }
     }
 
@@ -39,7 +42,7 @@ public class JdbcCustomerDao implements CustomerDao {
     public Customer findByEmail(String email) {
         ResultSet resultSet;
         PreparedStatement preparedStatement;
-        Connection connection = JdbcDaoFactory.createConnection();
+        Connection connection = createConnection();
         try {
             preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD FROM CUSTOMER WHERE EMAIL = ?");
             preparedStatement.setString(1, email);
@@ -54,7 +57,7 @@ public class JdbcCustomerDao implements CustomerDao {
         } catch (SQLException e) {
             throw new DaoException();
         } finally {
-            //TODO up to the end
+            freeConnection(connection);
         }
     }
 
@@ -74,7 +77,7 @@ public class JdbcCustomerDao implements CustomerDao {
 
     @Override
     public Customer insert(Customer customer) {
-        Connection connection = JdbcDaoFactory.createConnection();
+        Connection connection = createConnection();
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(

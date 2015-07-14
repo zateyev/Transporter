@@ -11,13 +11,19 @@ public class JdbcDaoFactory extends DaoFactory {
     public static final String PASSWORD = "transporter";
     public static final int MAX_CONNECTION = 5;
 
+    private static ConnectionPool connectionPool = ConnectionPool.getInstance(DRIVER_NAME, URL, USER, PASSWORD, MAX_CONNECTION);
+
     @Override
     public CustomerDao getCustomerDao() {
         return new JdbcCustomerDao();
     }
 
     public static Connection createConnection() {
-        ConnectionPool connectionPool = ConnectionPool.getInstance(DRIVER_NAME, URL, USER, PASSWORD, MAX_CONNECTION);
+        //ConnectionPool connectionPool = ConnectionPool.getInstance(DRIVER_NAME, URL, USER, PASSWORD, MAX_CONNECTION);
         return connectionPool.getConnection();
+    }
+
+    public static void freeConnection(Connection connection) {
+        connectionPool.freeConnection(connection);
     }
 }
