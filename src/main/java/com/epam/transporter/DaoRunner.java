@@ -7,13 +7,13 @@ import com.epam.transporter.entity.Customer;
 public class DaoRunner {
     public static void main(String[] args) {
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
-        CustomerDao customerDao = jdbcDaoFactory.getCustomerDao();
-        Customer customer = customerDao.findById(1L);
-        customerDao.update(customer);
-        customerDao.save(customer);
-        customerDao.merge(customer);
-        customerDao.insert(customer);
-        customerDao.remove(customer);
-        customerDao.removeById(1L);
+        CustomerDao jdbcCustomerDao = jdbcDaoFactory.getCustomerDao();
+        Customer customer = jdbcCustomerDao.findById(1L);
+        jdbcCustomerDao.update(customer);
+        jdbcCustomerDao.save(customer);
+        jdbcCustomerDao.merge(customer);
+        jdbcCustomerDao.insert(customer);
+        jdbcCustomerDao.remove(customer);
+        jdbcCustomerDao.removeById(1L);
     }
 }

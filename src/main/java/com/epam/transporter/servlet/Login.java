@@ -1,5 +1,7 @@
 package com.epam.transporter.servlet;
 
+import com.epam.transporter.dao.CustomerDao;
+import com.epam.transporter.dao.DaoFactory;
 import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.CustomerManager;
 
@@ -15,7 +17,12 @@ public class Login extends MainServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        Customer customer = new CustomerManager().findCustomerByEmail(email);
+
+        DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
+        CustomerDao jdbcCustomerDao = jdbcDaoFactory.getCustomerDao();
+        Customer customer = jdbcCustomerDao.findByEmail(email);
+
+//        Customer customer = new CustomerManager().findCustomerByEmail(email);
         if (customer.getPassword().equals(password)) {
             customer.setLogged(true);
 

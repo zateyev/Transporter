@@ -1,7 +1,6 @@
 package com.epam.transporter.dao;
 
 import com.epam.transporter.entity.Customer;
-import com.epam.transporter.sql.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +20,29 @@ public class JdbcCustomerDao implements CustomerDao {
         try {
             preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD FROM CUSTOMER WHERE ID = ?");
             preparedStatement.setLong(1, id);
+            resultSet = preparedStatement.executeQuery();
+            boolean found = resultSet.next();
+            if (!found) return null;
+            Customer customer = new Customer();
+            customer.setFirstName(resultSet.getString("FIRSTNAME"));
+            customer.setEmail(resultSet.getString("EMAIL"));
+            customer.setPassword(resultSet.getString("PASSWORD"));
+            return customer;
+        } catch (SQLException e) {
+            throw new DaoException();
+        } finally {
+            //TODO up to the end
+        }
+    }
+
+    @Override
+    public Customer findByEmail(String email) {
+        ResultSet resultSet;
+        PreparedStatement preparedStatement;
+        Connection connection = JdbcDaoFactory.createConnection();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD FROM CUSTOMER WHERE EMAIL = ?");
+            preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
             boolean found = resultSet.next();
             if (!found) return null;

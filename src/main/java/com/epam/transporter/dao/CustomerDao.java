@@ -5,6 +5,8 @@ import com.epam.transporter.entity.Customer;
 public interface CustomerDao {
     Customer findById(long l);
 
+    Customer findByEmail(String email);
+
     void update(Customer customer);
 
     Customer save(Customer customer);
