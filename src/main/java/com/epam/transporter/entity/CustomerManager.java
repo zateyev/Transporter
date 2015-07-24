@@ -13,7 +13,7 @@ public class CustomerManager {
         Customer customer = new Customer();
         customer.setEmail(email);
         try {
-            /*adding properties to HikariCP using property-file
+            /*adding properties to HikariCP using property-file hikari.properties
             Properties properties = new Properties();
             InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("db/hikari.properties");
             try {
