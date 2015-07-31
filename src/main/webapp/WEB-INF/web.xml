@@ -50,6 +50,15 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Book</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.Book</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Book</servlet-name>
+        <url-pattern>/book</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
         <cookie-config>

@@ -8,6 +8,8 @@
 <body>
 <p>Дистанция ${price.order.deliveryPoints.distance}</p>
 <p>Стоимость ${price.price}</p>
-<a href="#">Забронировать</a>
+<form method="get" action="${pageContext.request.contextPath}/book">
+    <input type="submit" value="Забронировать"/>
+</form>
 </body>
 </html>
