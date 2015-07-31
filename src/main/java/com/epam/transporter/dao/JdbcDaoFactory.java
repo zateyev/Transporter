@@ -18,6 +18,11 @@ public class JdbcDaoFactory extends DaoFactory {
         return new JdbcCustomerDao();
     }
 
+    @Override
+    public DeliveryPointsDao getDeliveryPointsDao() {
+        return new JdbcDeliveryPointsDao();
+    }
+
     public static Connection createConnection() {
         return connectionPool.getConnection();
     }

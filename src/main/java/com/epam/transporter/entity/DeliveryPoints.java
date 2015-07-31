@@ -1,13 +1,9 @@
 package com.epam.transporter.entity;
 
-import com.mysql.jdbc.*;
 import com.mysql.jdbc.Driver;
 
 import javax.xml.bind.annotation.*;
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Properties;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -49,6 +45,10 @@ public class DeliveryPoints {
 
     public int getDistance() {
         return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public int calculateDistance() {

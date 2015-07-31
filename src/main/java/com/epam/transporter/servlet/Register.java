@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Registration extends MainServlet {
+public class Register extends MainServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String firstName = request.getParameter("firstName");
@@ -26,7 +26,7 @@ public class Registration extends MainServlet {
         jdbcCustomerDao.insert(customer);
 
         request.setAttribute("customer", customer);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/confirmation.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/confirm.jsp");
         dispatcher.forward(request, response);
     }
 }

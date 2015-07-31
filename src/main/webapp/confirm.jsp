@@ -2,7 +2,7 @@
 <jsp:useBean id="customer" scope="request" type="com.epam.transporter.entity.Customer"/>
 <html>
 <head>
-    <title>Confirmation</title>
+    <title>Confirm</title>
 </head>
 <body>
 <p>Уважаемый ${customer.firstName}, регистрация прошла успешно</p>

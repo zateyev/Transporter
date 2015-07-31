@@ -1,5 +1,7 @@
 package com.epam.transporter;
 
+import com.epam.transporter.dao.DaoFactory;
+import com.epam.transporter.dao.DeliveryPointsDao;
 import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.CustomerManager;
 import com.epam.transporter.entity.DeliveryPoints;
@@ -26,5 +28,11 @@ public class Runner {
 
         Customer customer = new CustomerManager().findCustomerByEmail("zhasulan@mail.com");
         System.out.println(customer.getPassword());
+
+        //testing Calculation servlet
+        DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
+        DeliveryPointsDao jdbcDeliveryPointsDao = jdbcDaoFactory.getDeliveryPointsDao();
+        DeliveryPoints deliveryPoints = jdbcDeliveryPointsDao.findByPoints("Астана", "Караганды");
+        System.out.println(deliveryPoints.getDistance());
     }
 }

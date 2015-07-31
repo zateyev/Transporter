@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/registration" method="post" class="form">
+<form action="${pageContext.request.contextPath}/register" method="post" class="form">
   <label>registration</label>
   <input name="firstName" type="text" placeholder="Name">
   <input name="email" type="text" placeholder="Your email">
