@@ -40,4 +40,20 @@
         <servlet-name>Calculation</servlet-name>
         <url-pattern>/calculation</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.Logout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <name>5</name>
+        </cookie-config>
+    </session-config>
 </web-app>
