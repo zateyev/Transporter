@@ -28,7 +28,16 @@ public class Goods {
     public Goods() {
     }
 
-    public Goods(String name, int weight, int volume, int cost, String comment) {
+    public Weightiness typeByWeight() {
+        if (this.weight>=200&&this.weight<1500) return Weightiness.VERY_LIGHT;
+        else if (this.weight>=1500&&this.weight<3000) return Weightiness.LIGHT;
+        else if (this.weight>=3000&&this.weight<5000) return Weightiness.MEDIUM;
+        else if (this.weight>=5000&&this.weight<8000) return Weightiness.HEAVY;
+        else if (this.weight>=8000&&this.weight<20000) return Weightiness.VERY_HEAVY;
+        else return null;
+    }
+
+    public Goods(String name, Integer weight, Integer volume, Integer cost, String comment) {
         this.name = name;
         this.weight = weight;
         this.volume = volume;

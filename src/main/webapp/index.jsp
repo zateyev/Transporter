@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +17,8 @@
     <input name="destination" type="text" placeholder="Введите название местоположения">
   </div>
   <div class="description">
+    <label>Наименование</label>
+    <input name="name" type="text" placeholder="Введите наименование товара">
     <label>Вес</label>
     <input name="weight" type="text" placeholder="Введите вес товара, кг">
     <label>Объем</label>
@@ -24,9 +26,9 @@
     <label>Стоимость</label>
     <input name="cost" type="text" placeholder="Введите стоимость товара, тг">
   </div>
-    <label>Комментарии</label>
-    <input name="comment" type="text">
-    <button>Расчитать</button>
+  <label>Комментарии</label>
+  <input name="comment" type="text">
+  <button>Расчитать</button>
 </form>
 </body>
 </html>

@@ -7,20 +7,20 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Order", propOrder = {
-        "deliveryFromTo",
+        "deliveryPoints",
         "goods"
 })
 public class Order {
     @XmlElement(name = "deliveryPoints", required = true)
-    private DeliveryPoints deliveryFromTo;
+    private DeliveryPoints deliveryPoints;
     @XmlElement(name = "goods", required = true)
     private Goods goods;
 
     public Order() {
     }
 
-    public Order(DeliveryPoints deliveryFromTo, Goods goods) {
-        this.deliveryFromTo = deliveryFromTo;
+    public Order(DeliveryPoints deliveryPoints, Goods goods) {
+        this.deliveryPoints = deliveryPoints;
         this.goods = goods;
     }
 
@@ -32,11 +32,11 @@ public class Order {
         this.goods = goods;
     }
 
-    public DeliveryPoints getDeliveryFromTo() {
-        return deliveryFromTo;
+    public DeliveryPoints getDeliveryPoints() {
+        return deliveryPoints;
     }
 
-    public void setDeliveryFromTo(DeliveryPoints deliveryFromTo) {
-        this.deliveryFromTo = deliveryFromTo;
+    public void setDeliveryPoints(DeliveryPoints deliveryPoints) {
+        this.deliveryPoints = deliveryPoints;
     }
 }
