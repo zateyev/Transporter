@@ -2,6 +2,7 @@ package com.epam.transporter.servlet;
 
 import com.epam.transporter.dao.DaoFactory;
 import com.epam.transporter.dao.DeliveryPointsDao;
+import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.DeliveryPoints;
 import com.epam.transporter.entity.Goods;
 import com.epam.transporter.logic.Order;
@@ -12,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class Calculation extends HttpServlet {
@@ -34,8 +36,23 @@ public class Calculation extends HttpServlet {
         Price price = new Price(order);
 
         request.setAttribute("price", price);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
-        dispatcher.forward(request, response);
+        /*RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
+        dispatcher.forward(request, response);*/
+
+        HttpSession session = request.getSession(false);
+        Customer customer = (Customer) session.getAttribute("customer");
+        if (customer == null) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            if (customer.isRegistered()) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/book.jsp");
+                dispatcher.forward(request, response);
+            } else {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

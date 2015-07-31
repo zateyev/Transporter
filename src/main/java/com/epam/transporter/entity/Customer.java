@@ -1,7 +1,7 @@
 package com.epam.transporter.entity;
 
 public class Customer extends User {
-    private boolean logged;
+    private boolean logged = false;
 
     public String getPassword() {
         return super.getPassword();
@@ -19,5 +19,9 @@ public class Customer extends User {
     @Override
     public void setPassword(String password) {
         super.setPassword(password);
+    }
+
+    public boolean isRegistered() {
+        return logged;
     }
 }
