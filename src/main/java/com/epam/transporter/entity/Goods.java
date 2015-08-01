@@ -24,6 +24,7 @@ public class Goods {
     private Integer cost;
     @XmlElement(required = true)
     private String comment;
+    private long id;
 
     public Goods() {
     }
@@ -83,5 +84,13 @@ public class Goods {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 }

@@ -35,19 +35,21 @@ public class Calculation extends HttpServlet {
         Order order = new Order(deliveryPoints, goods);
         Price price = new Price(order);
 
-        request.setAttribute("price", price);
-        /*RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
+        /*request.setAttribute("price", price);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
         dispatcher.forward(request, response);*/
 
         HttpSession session = request.getSession(false);
+        session.setAttribute("price", price);
         Customer customer = (Customer) session.getAttribute("customer");
         if (customer == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
             dispatcher.forward(request, response);
         } else {
             if (customer.isRegistered()) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/book.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/book.jsp");
+                /*RequestDispatcher dispatcher = request.getRequestDispatcher("/book.jsp");
+                dispatcher.forward(request, response);*/
             } else {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
                 dispatcher.forward(request, response);

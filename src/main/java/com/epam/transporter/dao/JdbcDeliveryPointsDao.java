@@ -1,5 +1,6 @@
 package com.epam.transporter.dao;
 
+import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.DeliveryPoints;
 
 import java.sql.Connection;
@@ -36,6 +37,25 @@ public class JdbcDeliveryPointsDao implements DeliveryPointsDao {
             throw new DaoException();
         }
         finally {
+            freeConnection(connection);
+        }
+    }
+
+    @Override
+    public Long getIdByPoint(String pointName) {
+        ResultSet resultSet;
+        PreparedStatement preparedStatement;
+        Connection connection = createConnection();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT ID FROM POINTS WHERE POINT = ?");
+            preparedStatement.setString(1, pointName);
+            resultSet = preparedStatement.executeQuery();
+            boolean found = resultSet.next();
+            if (!found) return null;
+            return resultSet.getLong("ID");
+        } catch (SQLException e) {
+            throw new DaoException();
+        } finally {
             freeConnection(connection);
         }
     }

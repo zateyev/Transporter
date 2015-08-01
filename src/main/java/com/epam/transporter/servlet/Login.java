@@ -28,10 +28,6 @@ public class Login extends MainServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("customer", customer);
             response.sendRedirect(request.getContextPath() + "/welcome.jsp");
-
-            /*request.setAttribute("customer", customer);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/welcome.jsp");
-            dispatcher.forward(request, response);*/
         }
         else {
             customer.setLogged(false);

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="price" scope="request" type="com.epam.transporter.logic.Price"/>
+<jsp:useBean id="price" scope="session" type="com.epam.transporter.logic.Price"/>
 <!DOCTYPE html>
 <html>
 <head>

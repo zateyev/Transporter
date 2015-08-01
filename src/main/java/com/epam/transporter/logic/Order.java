@@ -15,6 +15,7 @@ public class Order {
     private DeliveryPoints deliveryPoints;
     @XmlElement(name = "goods", required = true)
     private Goods goods;
+    private long id;
 
     public Order() {
     }
@@ -38,5 +39,9 @@ public class Order {
 
     public void setDeliveryPoints(DeliveryPoints deliveryPoints) {
         this.deliveryPoints = deliveryPoints;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
