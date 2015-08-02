@@ -2,7 +2,6 @@ package com.epam.transporter.dao;
 
 import com.epam.transporter.entity.Order;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface OrderDao {

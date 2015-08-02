@@ -5,6 +5,8 @@ public class TruckBuilder {
     private Integer capacityByWeight;
     private Integer capacityByVolume;
     private Integer pricePerKm;
+    private String status;
+    private Long id;
 
     public TruckBuilder model(final String model) {
         this.model = model;
@@ -26,6 +28,16 @@ public class TruckBuilder {
         return this;
     }
 
+    public TruckBuilder status(final String status) {
+        this.status = status;
+        return this;
+    }
+
+    public TruckBuilder id(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public String getModel() {
         return model;
     }
@@ -40,6 +52,14 @@ public class TruckBuilder {
 
     public Integer getPricePerKm() {
         return pricePerKm;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Truck build() {

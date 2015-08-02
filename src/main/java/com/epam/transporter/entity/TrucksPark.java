@@ -1,12 +1,21 @@
 package com.epam.transporter.entity;
 
+import com.epam.transporter.dao.DaoFactory;
+import com.epam.transporter.dao.TruckDao;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrucksPark {
     private static List<Truck> trucks = new ArrayList<>();
 
-    public static final List<Truck> getTrucksList() {
+    public static List<Truck> getTrucksListFromDb() {
+        DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
+        TruckDao jdbcTruckDao = jdbcDaoFactory.getTruckDao();
+        return jdbcTruckDao.getTrucksList();
+    }
+
+    /*public static final List<Truck> getTrucksList() {
         trucks.add(new TruckBuilder()
                 .model("Газель")
                 .capacityByWeight(1500)
@@ -26,10 +35,10 @@ public class TrucksPark {
                 .pricePerKm(50)
                 .build());
         trucks.add(new TruckBuilder()
-                .model("Газель")
-                .capacityByWeight(1500)
-                .capacityByVolume(9)
-                .pricePerKm(30)
+                .model("KamAz")
+                .capacityByWeight(5000)
+                .capacityByVolume(12)
+                .pricePerKm(60)
                 .build());
         trucks.add(new TruckBuilder()
                 .model("Daf")
@@ -38,5 +47,14 @@ public class TrucksPark {
                 .pricePerKm(100)
                 .build());
         return trucks;
+    }*/
+
+    public static Truck getTruckByLoadCapacity(Weightiness weightiness) {
+        for (Truck truck : getTrucksListFromDb()) {
+            if (truck.typeByLoadCapacity().equals(weightiness)) {
+                return truck;
+            }
+        }
+        throw new TrucksParkException("No trucks suitable to the request");
     }
 }

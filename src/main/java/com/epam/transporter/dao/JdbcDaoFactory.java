@@ -33,6 +33,11 @@ public class JdbcDaoFactory extends DaoFactory {
         return new JdbcOrderDao();
     }
 
+    @Override
+    public TruckDao getTruckDao() {
+        return new JdbcTruckDao();
+    }
+
     public static Connection createConnection() {
         return connectionPool.getConnection();
     }

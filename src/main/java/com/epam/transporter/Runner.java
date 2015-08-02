@@ -12,7 +12,7 @@ public class Runner {
     public static void main(String[] args) {
         DeliveryPoints deliveryFromTo = new DeliveryPoints("Астана", "Караганды");
         System.out.println(deliveryFromTo.getDistance());
-        Goods goods = new Goods("Цемент", 5300, 1000, 30000, "");
+        Goods goods = new Goods("Цемент", 1230, 1000, 30000, "");
         Order order = new Order(deliveryFromTo, goods);
 
         /*OrderSaxParser orderSaxParser = new OrderSaxParser();
