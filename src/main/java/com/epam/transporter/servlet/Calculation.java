@@ -5,7 +5,7 @@ import com.epam.transporter.dao.DeliveryPointsDao;
 import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.DeliveryPoints;
 import com.epam.transporter.entity.Goods;
-import com.epam.transporter.logic.Order;
+import com.epam.transporter.entity.Order;
 import com.epam.transporter.logic.Price;
 
 import javax.servlet.RequestDispatcher;

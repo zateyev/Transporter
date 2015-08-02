@@ -2,7 +2,9 @@ package com.epam.transporter.servlet;
 
 import com.epam.transporter.dao.CustomerDao;
 import com.epam.transporter.dao.DaoFactory;
+import com.epam.transporter.dao.OrderDao;
 import com.epam.transporter.entity.Customer;
+import com.epam.transporter.entity.Order;
 import com.epam.transporter.entity.UserRole;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class Login extends MainServlet {
     @Override
@@ -29,6 +32,9 @@ public class Login extends MainServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("customer", customer);
             if (customer.getUserRole().equals(UserRole.ADMIN)) {
+                OrderDao jdbcOrderDao = jdbcDaoFactory.getOrderDao();
+                List<Order> orderList = jdbcOrderDao.getOrderList();
+                session.setAttribute("orderList", orderList);
                 response.sendRedirect(request.getContextPath() + "/admin.jsp");
             } else {
             response.sendRedirect(request.getContextPath() + "/welcome.jsp");

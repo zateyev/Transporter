@@ -1,6 +1,6 @@
 package com.epam.transporter.xml;
 
-import com.epam.transporter.logic.Order;
+import com.epam.transporter.entity.Order;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

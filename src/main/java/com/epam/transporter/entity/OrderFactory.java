@@ -1,7 +1,6 @@
 package com.epam.transporter.entity;
 
 
-import com.epam.transporter.logic.Order;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.namespace.QName;
@@ -26,6 +25,6 @@ public class OrderFactory {
 
     @XmlElementDecl(namespace = "", name = "Order")
     public JAXBElement<Order> createOrder(Order value) {
-        return new JAXBElement<Order>(_Order_QNAME, Order.class, null, value);
+        return new JAXBElement<>(_Order_QNAME, Order.class, null, value);
     }
 }

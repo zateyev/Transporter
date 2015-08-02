@@ -42,6 +42,11 @@ public class JdbcDeliveryPointsDao implements DeliveryPointsDao {
     }
 
     @Override
+    public DeliveryPoints findByPointsId(Long startingPointId, Long destinationId) {
+        return findByPoints(getPointNameById(startingPointId), getPointNameById(destinationId));
+    }
+
+    @Override
     public Long getIdByPoint(String pointName) {
         ResultSet resultSet;
         PreparedStatement preparedStatement;
@@ -53,6 +58,25 @@ public class JdbcDeliveryPointsDao implements DeliveryPointsDao {
             boolean found = resultSet.next();
             if (!found) return null;
             return resultSet.getLong("ID");
+        } catch (SQLException e) {
+            throw new DaoException();
+        } finally {
+            freeConnection(connection);
+        }
+    }
+
+    @Override
+    public String getPointNameById(Long id) {
+        ResultSet resultSet;
+        PreparedStatement preparedStatement;
+        Connection connection = createConnection();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT POINT FROM POINTS WHERE ID = ?");
+            preparedStatement.setLong(1, id);
+            resultSet = preparedStatement.executeQuery();
+            boolean found = resultSet.next();
+            if (!found) return null;
+            return resultSet.getString("POINT");
         } catch (SQLException e) {
             throw new DaoException();
         } finally {

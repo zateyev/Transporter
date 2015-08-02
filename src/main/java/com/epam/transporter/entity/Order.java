@@ -1,7 +1,5 @@
-package com.epam.transporter.logic;
+package com.epam.transporter.entity;
 
-import com.epam.transporter.entity.DeliveryPoints;
-import com.epam.transporter.entity.Goods;
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement
