@@ -8,6 +8,7 @@ public abstract class User {
     private String login;
     private String password;
     private long id;
+    private UserRole userRole;
 
     public String getFirstName() {
         return firstName;
@@ -63,5 +64,13 @@ public abstract class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

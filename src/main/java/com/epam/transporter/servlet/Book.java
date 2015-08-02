@@ -1,9 +1,7 @@
 package com.epam.transporter.servlet;
 
 import com.epam.transporter.dao.DaoFactory;
-import com.epam.transporter.dao.GoodsDao;
 import com.epam.transporter.dao.OrderDao;
-import com.epam.transporter.entity.Goods;
 import com.epam.transporter.logic.Price;
 
 import javax.servlet.RequestDispatcher;

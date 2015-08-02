@@ -1,6 +1,7 @@
 package com.epam.transporter.dao;
 
 import com.epam.transporter.entity.Customer;
+import com.epam.transporter.entity.UserRole;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,7 +45,7 @@ public class JdbcCustomerDao implements CustomerDao {
         PreparedStatement preparedStatement;
         Connection connection = createConnection();
         try {
-            preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD FROM CUSTOMER WHERE EMAIL = ?");
+            preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD, ROLE FROM CUSTOMER WHERE EMAIL = ?");
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
             boolean found = resultSet.next();
@@ -53,9 +54,10 @@ public class JdbcCustomerDao implements CustomerDao {
             customer.setFirstName(resultSet.getString("FIRSTNAME"));
             customer.setEmail(resultSet.getString("EMAIL"));
             customer.setPassword(resultSet.getString("PASSWORD"));
+            customer.setUserRole(UserRole.valueOf(resultSet.getString("ROLE")));
             return customer;
         } catch (SQLException e) {
-            throw new DaoException();
+            throw new DaoException(e);
         } finally {
             freeConnection(connection);
         }

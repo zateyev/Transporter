@@ -1,6 +1,7 @@
 package com.epam.transporter.logic;
 
 import com.epam.transporter.entity.TrucksPark;
+import com.epam.transporter.entity.Weightiness;
 
 public class Price {
     private Order order;
