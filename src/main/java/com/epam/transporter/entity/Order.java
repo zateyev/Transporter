@@ -14,6 +14,8 @@ public class Order {
     @XmlElement(name = "goods", required = true)
     private Goods goods;
     private long id;
+    private OrderStatus status;
+    private Customer customer;
 
     public Order() {
     }
@@ -25,6 +27,16 @@ public class Order {
 
     public Goods getGoods() {
         return goods;
+    }
+
+    public Truck getSuitableTruck() {
+        Weightiness weightiness = goods.typeByWeight();
+        return TrucksPark.getTruckByLoadCapacity(weightiness);
+    }
+
+    public Integer getPrice() {
+        Truck truck = getSuitableTruck();
+        return deliveryPoints.getDistance() * truck.getPricePerKm();
     }
 
     public void setGoods(Goods goods) {
@@ -41,5 +53,21 @@ public class Order {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getStatus() {
+        return String.valueOf(status);
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 }

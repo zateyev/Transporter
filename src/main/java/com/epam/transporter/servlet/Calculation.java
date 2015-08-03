@@ -6,7 +6,7 @@ import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.DeliveryPoints;
 import com.epam.transporter.entity.Goods;
 import com.epam.transporter.entity.Order;
-import com.epam.transporter.logic.Price;
+import com.epam.transporter.logic.Reservation;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,10 +33,9 @@ public class Calculation extends HttpServlet {
 
         Goods goods = new Goods(name, Integer.valueOf(weight), Integer.valueOf(volume), Integer.valueOf(cost), comment);
         Order order = new Order(deliveryPoints, goods);
-        Price price = new Price(order);
 
         HttpSession session = request.getSession(false);
-        session.setAttribute("price", price);
+        session.setAttribute("order", order);
         Customer customer = (Customer) session.getAttribute("customer");
         if (customer == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");

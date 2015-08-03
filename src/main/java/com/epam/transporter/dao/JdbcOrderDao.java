@@ -1,8 +1,6 @@
 package com.epam.transporter.dao;
 
-import com.epam.transporter.entity.DeliveryPoints;
-import com.epam.transporter.entity.Goods;
-import com.epam.transporter.entity.Order;
+import com.epam.transporter.entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,10 +31,12 @@ public class JdbcOrderDao implements OrderDao {
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(
-                    "INSERT INTO BOOKING (ID, ID_GOOD, ID_POINT1, ID_POINT2) VALUES (DEFAULT, ?, ?, ?)");
+                    "INSERT INTO BOOKING (ID, ID_GOOD, ID_POINT1, ID_POINT2, ID_CUSTOMER, STATUS) VALUES (DEFAULT, ?, ?, ?, ?, ?)");
             preparedStatement.setLong(1, goods.getId());
             preparedStatement.setLong(2, startingPoint);
             preparedStatement.setLong(3, destination);
+            preparedStatement.setLong(4, order.getCustomer().getId());
+            preparedStatement.setString(5, String.valueOf(OrderStatus.NEW));
             preparedStatement.executeUpdate();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             generatedKeys.next();
@@ -59,21 +59,25 @@ public class JdbcOrderDao implements OrderDao {
         PreparedStatement preparedStatement;
         Connection connection = createConnection();
         try {
-            preparedStatement = connection.prepareStatement("SELECT ID, ID_GOOD, ID_POINT1, ID_POINT2 FROM BOOKING");
+            preparedStatement = connection.prepareStatement("SELECT ID, ID_GOOD, ID_POINT1, ID_POINT2, ID_CUSTOMER, STATUS FROM BOOKING");
             resultSet = preparedStatement.executeQuery();
-            //boolean found = resultSet.next();
-            //if (!found) return null;
             List<Order> orderList = new ArrayList<>();
             DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
             GoodsDao jdbcGoodsDao = jdbcDaoFactory.getGoodsDao();
             DeliveryPointsDao jdbcDeliveryPointsDao = jdbcDaoFactory.getDeliveryPointsDao();
+            CustomerDao jdbcCustomerDao = jdbcDaoFactory.getCustomerDao();
             while (resultSet.next()) {
                 Long goodsId = resultSet.getLong("ID_GOOD");
                 Long startingPointId = resultSet.getLong("ID_POINT1");
                 Long destinationId = resultSet.getLong("ID_POINT2");
                 Goods goods = jdbcGoodsDao.findById(goodsId);
                 DeliveryPoints deliveryPoints = jdbcDeliveryPointsDao.findByPointsId(startingPointId, destinationId);
-                orderList.add(new Order(deliveryPoints, goods));
+                Customer customer = jdbcCustomerDao.findById(resultSet.getLong("ID_CUSTOMER"));
+                OrderStatus status = OrderStatus.valueOf(resultSet.getString("STATUS"));
+                Order order = new Order(deliveryPoints, goods);
+                order.setCustomer(customer);
+                order.setStatus(status);
+                orderList.add(order);
             }
             return orderList;
         } catch (SQLException e) {

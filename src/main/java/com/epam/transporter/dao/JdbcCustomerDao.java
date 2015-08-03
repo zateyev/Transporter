@@ -17,7 +17,7 @@ public class JdbcCustomerDao implements CustomerDao {
     }
 
     @Override
-    public Customer findById(long id) {
+    public Customer findById(Long id) {
         ResultSet resultSet;
         PreparedStatement preparedStatement;
         Connection connection = createConnection();
@@ -28,6 +28,7 @@ public class JdbcCustomerDao implements CustomerDao {
             boolean found = resultSet.next();
             if (!found) return null;
             Customer customer = new Customer();
+            customer.setId(id);
             customer.setFirstName(resultSet.getString("FIRSTNAME"));
             customer.setEmail(resultSet.getString("EMAIL"));
             customer.setPassword(resultSet.getString("PASSWORD"));
@@ -51,6 +52,7 @@ public class JdbcCustomerDao implements CustomerDao {
             boolean found = resultSet.next();
             if (!found) return null;
             Customer customer = new Customer();
+            customer.setId(resultSet.getLong("ID"));
             customer.setFirstName(resultSet.getString("FIRSTNAME"));
             customer.setEmail(resultSet.getString("EMAIL"));
             customer.setPassword(resultSet.getString("PASSWORD"));

@@ -3,7 +3,7 @@ package com.epam.transporter.dao;
 import com.epam.transporter.entity.Customer;
 
 public interface CustomerDao {
-    Customer findById(long l);
+    Customer findById(Long l);
 
     Customer findByEmail(String email);
 

@@ -5,7 +5,7 @@ import com.epam.transporter.entity.CustomerManager;
 import com.epam.transporter.entity.DeliveryPoints;
 import com.epam.transporter.entity.Goods;
 import com.epam.transporter.entity.Order;
-import com.epam.transporter.logic.Price;
+import com.epam.transporter.logic.Reservation;
 
 public class Runner {
 
@@ -19,8 +19,8 @@ public class Runner {
         InputStream xmlIn = Runner.class.getClassLoader().getResourceAsStream("order.xml");
         Order order = orderSaxParser.parseOrder(xmlIn);*/
 
-        Price price = new Price(order);
-        System.out.println(price.getPrice());
+        Reservation.reserveTruck(order.getSuitableTruck());
+        System.out.println(order.getPrice());
 //        MarshalOrder marshalOrder = new MarshalOrder();
 //        marshalOrder.convertToXml(order);
 

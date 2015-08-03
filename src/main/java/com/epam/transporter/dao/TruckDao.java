@@ -10,4 +10,5 @@ public interface TruckDao {
     Truck insert(Truck truck);
     boolean removeById(Long id);
     List<Truck> getTrucksList();
+    void update(Truck truck);
 }

@@ -62,7 +62,7 @@ public class TruckBuilder {
         return id;
     }
 
-    public Truck build() {
+    /*public Truck build() {
         return new Truck(this);
-    }
+    }*/
 }
