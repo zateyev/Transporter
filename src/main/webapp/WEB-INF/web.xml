@@ -59,6 +59,15 @@
         <url-pattern>/book</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ChangingOrderStatus</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.ChangingOrderStatus</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangingOrderStatus</servlet-name>
+        <url-pattern>/changingOrderStatus</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
         <cookie-config>

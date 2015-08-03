@@ -49,6 +49,21 @@ public class JdbcOrderDao implements OrderDao {
     }
 
     @Override
+    public void update(Order order) {
+        Connection connection = createConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(
+                    "UPDATE BOOKING SET STATUS = ? WHERE ID = ?");
+            preparedStatement.setString(1, String.valueOf(order.getStatus()));
+            preparedStatement.setLong(2, order.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    @Override
     public boolean removeById(long id) {
         return false;
     }
@@ -75,6 +90,7 @@ public class JdbcOrderDao implements OrderDao {
                 Customer customer = jdbcCustomerDao.findById(resultSet.getLong("ID_CUSTOMER"));
                 OrderStatus status = OrderStatus.valueOf(resultSet.getString("STATUS"));
                 Order order = new Order(deliveryPoints, goods);
+                order.setId(resultSet.getLong("ID"));
                 order.setCustomer(customer);
                 order.setStatus(status);
                 orderList.add(order);

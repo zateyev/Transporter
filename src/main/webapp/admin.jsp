@@ -7,6 +7,9 @@
 <body>
 <p>Hello admin!</p>
 <form method="get" action="${pageContext.request.contextPath}/logout">
+    <input type="submit" value="Logout"/>
+</form>
+<form action="${pageContext.request.contextPath}/changingOrderStatus" method="post">
     <table>
         <tr>
             <td>Груз</td>
@@ -22,10 +25,19 @@
                 <td>${order.deliveryPoints.startingPoint}</td>
                 <td>${order.deliveryPoints.destination}</td>
                 <td>${order.customer.firstName}</td>
-                <td>${order.status}</td>
+                <td>
+                    <select name="status${order.id}" id="">
+                        <option value="${order.status}">${order.status}</option>
+                        <option value="IN_WORK">IN_WORK</option>
+                        <option value="WORKED_OUT">WORKED_OUT</option>
+                        <option value="CANCELED">CANCELED</option>
+                    </select>
+                </td>
             </tr>
         </c:forEach>
     </table>
+    <button>Изменить</button>
+</form>
     <table>
         <tr>
             <td>ID</td>
@@ -41,7 +53,5 @@
             </tr>
         </c:forEach>
     </table>
-    <input type="submit" value="Logout"/>
-</form>
 </body>
 </html>
