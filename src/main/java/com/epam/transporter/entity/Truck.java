@@ -8,8 +8,7 @@ public class Truck {
     private Integer pricePerKm;
     private TruckStatus status;
 
-    public Truck(Long id, String model, Integer capacityByWeight, Integer capacityByVolume, Integer pricePerKm, TruckStatus status) {
-        this.id = id;
+    public Truck(String model, Integer capacityByWeight, Integer capacityByVolume, Integer pricePerKm, TruckStatus status) {
         this.model = model;
         this.capacityByWeight = capacityByWeight;
         this.capacityByVolume = capacityByVolume;

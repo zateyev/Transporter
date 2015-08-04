@@ -60,12 +60,30 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ChangingOrderStatus</servlet-name>
-        <servlet-class>com.epam.transporter.servlet.ChangingOrderStatus</servlet-class>
+        <servlet-name>OrderStatusChanger</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.OrderStatusChanger</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ChangingOrderStatus</servlet-name>
-        <url-pattern>/changingOrderStatus</url-pattern>
+        <servlet-name>OrderStatusChanger</servlet-name>
+        <url-pattern>/orderStatusChanger</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TruckStatusChanger</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.TruckStatusChanger</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TruckStatusChanger</servlet-name>
+        <url-pattern>/truckStatusChanger</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TruckAdder</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.TruckAdder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TruckAdder</servlet-name>
+        <url-pattern>/truckAdder</url-pattern>
     </servlet-mapping>
 
     <session-config>

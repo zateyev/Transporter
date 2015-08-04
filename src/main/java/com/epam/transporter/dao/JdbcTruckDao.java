@@ -38,7 +38,7 @@ public class JdbcTruckDao implements TruckDao {
             preparedStatement.executeUpdate();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             generatedKeys.next();
-            long id = generatedKeys.getLong(1);
+            Long id = generatedKeys.getLong(1);
             truck.setId(id);
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -67,7 +67,9 @@ public class JdbcTruckDao implements TruckDao {
                 Integer volumeCapacity = resultSet.getInt("VOLUME_CAPACITY");
                 Integer pricePerKm = resultSet.getInt("PRICE_PER_KM");
                 TruckStatus status = TruckStatus.valueOf(resultSet.getString("STATUS"));
-                truckList.add(new Truck(trucksId, model, weightCapacity, volumeCapacity, pricePerKm, status));
+                Truck truck = new Truck(model, weightCapacity, volumeCapacity, pricePerKm, status);
+                truck.setId(trucksId);
+                truckList.add(truck);
             }
             return truckList;
         } catch (SQLException e) {

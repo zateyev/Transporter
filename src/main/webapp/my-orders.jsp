@@ -6,7 +6,7 @@
 </head>
 <body>
 <p>Мои заказы</p>
-<form action="${pageContext.request.contextPath}/changingOrderStatus" method="post">
+<form action="${pageContext.request.contextPath}/orderStatusChanger" method="post">
   <table>
     <tr>
       <td>Груз</td>

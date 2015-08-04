@@ -9,7 +9,7 @@
 <form method="get" action="${pageContext.request.contextPath}/logout">
     <input type="submit" value="Logout"/>
 </form>
-<form action="${pageContext.request.contextPath}/changingOrderStatus" method="post">
+<form action="${pageContext.request.contextPath}/orderStatusChanger" method="post">
     <table>
         <tr>
             <td>Груз</td>
@@ -26,7 +26,7 @@
                 <td>${order.deliveryPoints.destination}</td>
                 <td>${order.customer.firstName}</td>
                 <td>
-                    <select name="status${order.id}" id="">
+                    <select name="status${order.id}" id="0">
                         <option value="${order.status}">${order.status}</option>
                         <option value="IN_WORK">IN_WORK</option>
                         <option value="WORKED_OUT">WORKED_OUT</option>
@@ -38,10 +38,14 @@
     </table>
     <button>Изменить</button>
 </form>
+<form action="${pageContext.request.contextPath}/truckStatusChanger" method="post">
     <table>
         <tr>
             <td>ID</td>
             <td>Модель</td>
+            <td>Грузоподъемность</td>
+            <td>Объем</td>
+            <td>Цена за км</td>
             <td>Статус</td>
         </tr>
         <jsp:useBean id="trucksList" scope="session" type="java.util.List"/>
@@ -49,9 +53,48 @@
             <tr>
                 <td>${truck.id}</td>
                 <td>${truck.model}</td>
-                <td>${truck.status}</td>
+                <td>${truck.capacityByWeight}</td>
+                <td>${truck.capacityByVolume}</td>
+                <td>${truck.pricePerKm}</td>
+                <td>
+                    <select name="status${truck.id}" id="color-bar-indicator">
+                        <option value="${truck.status}">${truck.status}</option>
+                        <option value="EMPTY">EMPTY</option>
+                        <option value="RESERVED">RESERVED</option>
+                        <option value="DEFECTIVE">DEFECTIVE</option>
+                    </select>
+                </td>
             </tr>
         </c:forEach>
+        <form action="${pageContext.request.contextPath}/truckAdder" method="post">
+            <tr>
+                <td></td>
+                <td>
+                    <input name="model" type="text" placeholder="model">
+                </td>
+                <td>
+                    <input name="capacityByWeight" type="text" placeholder="capacityByWeight">
+                </td>
+                <td>
+                    <input name="capacityByVolume" type="text" placeholder="capacityByVolume">
+                </td>
+                <td>
+                    <input name="pricePerKm" type="text" placeholder="pricePerKm">
+                </td>
+                <td>
+                    <select name="status" id="">
+                        <option value="EMPTY">EMPTY</option>
+                        <option value="RESERVED">RESERVED</option>
+                        <option value="DEFECTIVE">DEFECTIVE</option>
+                    </select>
+                </td>
+                <td>
+                    <button>Добавить</button>
+                </td>
+            </tr>
+        </form>
     </table>
+    <button>Изменить</button>
+</form>
 </body>
 </html>
