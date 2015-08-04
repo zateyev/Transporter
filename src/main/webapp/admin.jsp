@@ -38,6 +38,7 @@
     </table>
     <button>Изменить</button>
 </form>
+<p><a href="edit-trucks-list.jsp">Редактировать список грузовиков</a></p>
 <form action="${pageContext.request.contextPath}/truckStatusChanger" method="post">
     <table>
         <tr>
@@ -66,33 +67,6 @@
                 </td>
             </tr>
         </c:forEach>
-        <form action="${pageContext.request.contextPath}/truckAdder" method="post">
-            <tr>
-                <td></td>
-                <td>
-                    <input name="model" type="text" placeholder="model">
-                </td>
-                <td>
-                    <input name="capacityByWeight" type="text" placeholder="capacityByWeight">
-                </td>
-                <td>
-                    <input name="capacityByVolume" type="text" placeholder="capacityByVolume">
-                </td>
-                <td>
-                    <input name="pricePerKm" type="text" placeholder="pricePerKm">
-                </td>
-                <td>
-                    <select name="status" id="">
-                        <option value="EMPTY">EMPTY</option>
-                        <option value="RESERVED">RESERVED</option>
-                        <option value="DEFECTIVE">DEFECTIVE</option>
-                    </select>
-                </td>
-                <td>
-                    <button>Добавить</button>
-                </td>
-            </tr>
-        </form>
     </table>
     <button>Изменить</button>
 </form>

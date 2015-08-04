@@ -29,7 +29,7 @@ public class TruckAdder extends HttpServlet {
         List<Truck> trucksList = (List<Truck>) session.getAttribute("trucksList");
         trucksList.add(truck);
         session.setAttribute("trucksList", trucksList);
-        response.sendRedirect(request.getContextPath() + "/admin.jsp");
+        response.sendRedirect(request.getContextPath() + "/edit-trucks-list.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
