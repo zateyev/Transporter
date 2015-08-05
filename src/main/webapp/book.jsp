@@ -16,6 +16,7 @@
         <ul class="nav nav-pills pull-right">
             <li><a href="welcome.jsp"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
             <li><a href="#">${customer.firstName}</a></li>
+            <li><a href="my-orders.jsp">Мои заказы</a></li>
             <li>
                 <form method="get" action="${pageContext.request.contextPath}/logout">
                     <button class="btn btn-default navbar-btn">Выйти</button>

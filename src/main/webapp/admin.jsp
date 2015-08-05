@@ -25,14 +25,17 @@
         <h1 class="text-muted">Transporter</h1>
     </div>
     <form action="${pageContext.request.contextPath}/orderStatusChanger" method="post">
-        <table>
+        <div class="list">
+            <h3>Список заказов</h3>
+        <table class="table">
             <tr>
-                <td>Груз</td>
-                <td>Откуда</td>
-                <td>Куда</td>
-                <td>Заказчик</td>
-                <td>Статус</td>
+                <th>Груз</th>
+                <th>Откуда</th>
+                <th>Куда</th>
+                <th>Заказчик</th>
+                <th>Статус</th>
             </tr>
+            <tbody>
             <jsp:useBean id="orderList" scope="session" type="java.util.List"/>
             <c:forEach items="${orderList}" var="order">
                 <tr>
@@ -50,21 +53,25 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
-        <button>Изменить</button>
+            <button class="btn btn-info pull-right">Изменить статусы</button>
+        </div>
     </form>
-    <p><a href="edit-trucks-list.jsp">Редактировать список грузовиков</a></p>
 
     <form action="${pageContext.request.contextPath}/truckStatusChanger" method="post">
-        <table>
+        <div class="list">
+            <h3>Список грузовиков</h3>
+        <table class="table">
             <tr>
-                <td>ID</td>
-                <td>Модель</td>
-                <td>Грузоподъемность</td>
-                <td>Объем</td>
-                <td>Цена за км</td>
-                <td>Статус</td>
+                <th>ID</th>
+                <th>Модель</th>
+                <th>Грузоподъемность</th>
+                <th>Объем</th>
+                <th>Цена за км</th>
+                <th>Статус</th>
             </tr>
+            <tbody>
             <jsp:useBean id="trucksList" scope="session" type="java.util.List"/>
             <c:forEach items="${trucksList}" var="truck">
                 <tr>
@@ -83,8 +90,11 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
-        <button>Изменить</button>
+            <a href="edit-trucks-list.jsp">Редактировать список грузовиков</a>
+            <button class="btn btn-info pull-right">Изменить статусы</button>
+        </div>
     </form>
     <%@include file="footer.jspf" %>
 </div>

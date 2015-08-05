@@ -24,15 +24,19 @@
         </ul>
         <h1 class="text-muted">Transporter</h1>
     </div>
-    <table>
+</div>
+<h3>Список грузовиков</h3>
+    <table class="table">
         <tr>
-            <td>ID</td>
-            <td>Модель</td>
-            <td>Грузоподъемность</td>
-            <td>Объем</td>
-            <td>Цена за км</td>
-            <td>Статус</td>
+            <th>ID</th>
+            <th>Модель</th>
+            <th>Грузоподъемность</th>
+            <th>Объем</th>
+            <th>Цена за км</th>
+            <th>Статус</th>
+            <th></th>
         </tr>
+        <tbody>
         <jsp:useBean id="trucksList" scope="session" type="java.util.List"/>
         <c:forEach items="${trucksList}" var="truck">
             <form action="${pageContext.request.contextPath}/truckRemover" method="post">
@@ -45,7 +49,7 @@
                     <td>${truck.status}</td>
                     <td>
                         <input type="hidden" name="truckId" value="${truck.id}"/>
-                        <input type="submit" value="Удалить"/>
+                        <button class="btn-warning">Удалить</button>
                     </td>
                 </tr>
             </form>
@@ -73,11 +77,13 @@
                     </select>
                 </td>
                 <td>
-                    <button>Добавить</button>
+                    <button class="btn-primary">Добавить</button>
                 </td>
             </tr>
         </form>
+        </tbody>
     </table>
+    <div class="container">
     <%@include file="footer.jspf" %>
 </div>
 </body>
