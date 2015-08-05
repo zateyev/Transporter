@@ -2,33 +2,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" href="main.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="jumbotron-narrow.css">
 </head>
-<body>
-<a href="login.jsp">Вход</a>
-<a href="register.jsp">Регистрация</a>
-<form action="${pageContext.request.contextPath}/calculation" method="post" class="form">
-  <div class="points">
-    <label>Откуда</label>
-    <input name="startingPoint" type="text" placeholder="Введите название местоположения">
-    <label>Куда</label>
-    <input name="destination" type="text" placeholder="Введите название местоположения">
-  </div>
-  <div class="description">
-    <label>Наименование</label>
-    <input name="name" type="text" placeholder="Введите наименование товара">
-    <label>Вес</label>
-    <input name="weight" type="text" placeholder="Введите вес товара, кг">
-    <label>Объем</label>
-    <input name="volume" type="text" placeholder="Введите объем товара, л">
-    <label>Стоимость</label>
-    <input name="cost" type="text" placeholder="Введите стоимость товара, тг">
-  </div>
-  <label>Комментарии</label>
-  <input name="comment" type="text">
-  <button>Расчитать</button>
-</form>
+<body style="zoom: 1;">
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
+            <li><a href="login.jsp">Вход</a></li>
+            <li><a href="register.jsp">Регистрация</a></li>
+        </ul>
+        <h1 class="text-muted">Transporter</h1>
+    </div>
+
+    <%@include file="order.jspf" %>
+    <%@include file="content.jspf" %>
+    <%@include file="footer.jspf" %>
+</div>
 </body>
 </html>

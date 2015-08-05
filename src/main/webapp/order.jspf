@@ -1,22 +1,28 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form action="${pageContext.request.contextPath}/calculation" method="post" class="form">
-  <div class="points">
-    <label>Откуда</label>
-    <input name="startingPoint" type="text" placeholder="Введите название местоположения">
-    <label>Куда</label>
-    <input name="destination" type="text" placeholder="Введите название местоположения">
-  </div>
-  <div class="description">
-    <label>Наименование</label>
-    <input name="name" type="text" placeholder="Введите наименование товара">
-    <label>Вес</label>
-    <input name="weight" type="text" placeholder="Введите вес товара, кг">
-    <label>Объем</label>
-    <input name="volume" type="text" placeholder="Введите объем товара, л">
-    <label>Стоимость</label>
-    <input name="cost" type="text" placeholder="Введите стоимость товара, тг">
-  </div>
-  <label>Комментарии</label>
-  <input name="comment" type="text">
-  <button>Расчитать</button>
-</form>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<div class="jumbotron clearfix">
+  <h2>Расчет стоимости перевозки</h2>
+  <form action="${pageContext.request.contextPath}/calculation" method="post" class="form">
+    <div class="col-lg-6">
+      <p><label>Откуда</label></p>
+      <input name="startingPoint" type="text" placeholder="Введите название местоположения">
+      <p><label>Наименование</label></p>
+      <input name="name" type="text" placeholder="Введите наименование груза">
+      <p><label>Вес</label></p>
+      <input name="weight" type="text" placeholder="Введите вес груза, кг">
+    </div>
+    <div class="col-lg-6">
+      <p><label>Куда</label></p>
+      <input name="destination" type="text" placeholder="Введите название местоположения">
+      <p><label>Стоимость</label></p>
+      <input name="cost" type="text" placeholder="Введите стоимость груза, тг">
+      <p><label>Объем</label></p>
+      <input name="volume" type="text" placeholder="Введите объем груза, л">
+    </div>
+
+    <div class="col-lg-12">
+        <p><label>Комментарии</label></p>
+        <input name="comment" type="text">
+        <button class="btn btn-lg btn-success pull-right">Рассчитать</button>
+    </div>
+  </form>
+</div>

@@ -1,15 +1,37 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="order" scope="session" type="com.epam.transporter.entity.Order"/>
+<%--@elvariable id="customer" type="com.epam.transporter.entity.Customer"--%>
+<%--@elvariable id="order" type="com.epam.transporter.entity.Order"--%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Book</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="jumbotron-narrow.css">
 </head>
-<body>
-<p>Дистанция ${order.deliveryPoints.distance}</p>
-<p>Стоимость ${order.price}</p>
-<form method="get" action="${pageContext.request.contextPath}/book">
-    <input type="submit" value="Забронировать"/>
-</form>
+<body style="zoom: 1;">
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li><a href="welcome.jsp"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
+            <li><a href="#">${customer.firstName}</a></li>
+            <li>
+                <form method="get" action="${pageContext.request.contextPath}/logout">
+                    <button class="btn btn-default navbar-btn">Выйти</button>
+                </form>
+            </li>
+        </ul>
+        <h1 class="text-muted">Transporter</h1>
+    </div>
+    <p>Дистанция ${order.deliveryPoints.distance}</p>
+
+    <p>Стоимость ${order.price}</p>
+
+    <form method="get" action="${pageContext.request.contextPath}/book">
+        <input type="submit" value="Забронировать"/>
+    </form>
+    <%@include file="footer.jspf" %>
+</div>
 </body>
 </html>
