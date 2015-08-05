@@ -48,7 +48,17 @@ public class JdbcTruckDao implements TruckDao {
 
     @Override
     public boolean removeById(Long id) {
-        return false;
+        Connection connection = createConnection();
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(
+                    "DELETE FROM TRUCK WHERE ID=?");
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     @Override

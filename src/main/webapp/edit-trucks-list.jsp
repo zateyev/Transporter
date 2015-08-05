@@ -16,21 +16,20 @@
     </tr>
     <jsp:useBean id="trucksList" scope="session" type="java.util.List"/>
     <c:forEach items="${trucksList}" var="truck">
-        <tr>
+    <form action="${pageContext.request.contextPath}/truckRemover" method="post">
+    <tr>
             <td>${truck.id}</td>
             <td>${truck.model}</td>
             <td>${truck.capacityByWeight}</td>
             <td>${truck.capacityByVolume}</td>
             <td>${truck.pricePerKm}</td>
+            <td>${truck.status}</td>
             <td>
-                <select name="status${truck.id}" id="color-bar-indicator">
-                    <option value="${truck.status}">${truck.status}</option>
-                    <option value="EMPTY">EMPTY</option>
-                    <option value="RESERVED">RESERVED</option>
-                    <option value="DEFECTIVE">DEFECTIVE</option>
-                </select>
+                <input type="hidden" name="truckId" value="${truck.id}"/>
+                <input type="submit" value="Удалить"/>
             </td>
         </tr>
+    </form>
     </c:forEach>
     <form action="${pageContext.request.contextPath}/truckAdder" method="post">
         <tr>

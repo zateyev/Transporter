@@ -86,6 +86,15 @@
         <url-pattern>/truckAdder</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TruckRemover</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.TruckRemover</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TruckRemover</servlet-name>
+        <url-pattern>/truckRemover</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
         <cookie-config>
