@@ -7,6 +7,9 @@ import com.epam.transporter.entity.Goods;
 import com.epam.transporter.entity.Order;
 import com.epam.transporter.logic.Reservation;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class Runner {
 
     public static void main(String[] args) {
@@ -28,5 +31,9 @@ public class Runner {
         System.out.println(customer.getPassword());
 
         System.out.println(String.valueOf(order.getGoods().typeByWeight()));
+
+        Locale locale = new Locale("kk", "KZ");
+        ResourceBundle rb = ResourceBundle.getBundle("i18n", locale);
+        System.out.println(rb.getString("key1"));
     }
 }

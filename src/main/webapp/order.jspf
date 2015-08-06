@@ -1,26 +1,26 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <div class="jumbotron clearfix">
-  <h2>Расчет стоимости перевозки</h2>
+  <h2><fmt:message key="order.title" /></h2>
   <form action="${pageContext.request.contextPath}/calculation" method="post" class="form">
     <div class="col-lg-6">
-      <p><label>Откуда</label></p>
+      <p><label><fmt:message key="order.point1" /></label></p>
       <input name="startingPoint" type="text" placeholder="Введите название местоположения">
-      <p><label>Наименование</label></p>
+      <p><label><fmt:message key="order.goods.name" /></label></p>
       <input name="name" type="text" placeholder="Введите наименование груза">
-      <p><label>Вес</label></p>
+      <p><label><fmt:message key="order.goods.weight" /></label></p>
       <input name="weight" type="text" placeholder="Введите вес груза, кг">
     </div>
     <div class="col-lg-6">
-      <p><label>Куда</label></p>
+      <p><label><fmt:message key="order.point2" /></label></p>
       <input name="destination" type="text" placeholder="Введите название местоположения">
-      <p><label>Стоимость</label></p>
+      <p><label><fmt:message key="order.goods.cost" /></label></p>
       <input name="cost" type="text" placeholder="Введите стоимость груза, тг">
-      <p><label>Объем</label></p>
+      <p><label><fmt:message key="order.goods.volume" /></label></p>
       <input name="volume" type="text" placeholder="Введите объем груза, л">
     </div>
 
     <div class="col-lg-12">
-        <p><label>Комментарии</label></p>
+        <p><label><fmt:message key="order.comment" /></label></p>
         <input name="comment" type="text">
         <button class="btn btn-lg btn-success pull-right">Рассчитать</button>
     </div>

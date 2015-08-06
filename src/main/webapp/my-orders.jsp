@@ -25,16 +25,17 @@
         </ul>
         <h1 class="text-muted">Transporter</h1>
     </div>
-    <p>Мои заказы</p>
 
     <form action="${pageContext.request.contextPath}/orderStatusChanger" method="post">
-        <table>
+        <h3>Мои заказы</h3>
+        <table class="table">
             <tr>
-                <td>Груз</td>
-                <td>Откуда</td>
-                <td>Куда</td>
-                <td>Статус</td>
+                <th>Груз</th>
+                <th>Откуда</th>
+                <th>Куда</th>
+                <th>Статус</th>
             </tr>
+            <tbody>
             <jsp:useBean id="customerOrders" scope="session" type="java.util.List"/>
             <c:forEach items="${customerOrders}" var="order">
                 <tr>
@@ -49,8 +50,9 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
-        <button>Изменить</button>
+        <button class="btn btn-info pull-right">Отменить заказы</button>
     </form>
     <%@include file="content.jspf" %>
     <%@include file="footer.jspf" %>

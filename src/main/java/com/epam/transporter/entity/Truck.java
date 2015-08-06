@@ -82,4 +82,8 @@ public class Truck {
     public void setStatus(TruckStatus status) {
         this.status = status;
     }
+
+    public boolean isEmpty() {
+        return this.status == TruckStatus.EMPTY;
+    }
 }
