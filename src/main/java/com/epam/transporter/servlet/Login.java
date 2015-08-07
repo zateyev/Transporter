@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Login extends MainServlet {
@@ -42,7 +41,7 @@ public class Login extends MainServlet {
                 session.setAttribute("trucksList", trucksList);
                 response.sendRedirect(request.getContextPath() + "/admin.jsp");
             } else {
-                List<Order> customerOrders = getCustomerOrders(orderList, customer);
+                List<Order> customerOrders = customer.getOrderListFrom(orderList);
                 session.setAttribute("customerOrders", customerOrders);
                 response.sendRedirect(request.getContextPath() + "/welcome.jsp");
             }
@@ -54,13 +53,5 @@ public class Login extends MainServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
             dispatcher.forward(request, response);
         }
-    }
-
-    private List<Order> getCustomerOrders(List<Order> orderList, Customer customer) {
-        List<Order> customerOrders = new ArrayList<>();
-        for (Order order : orderList) {
-            if (order.getCustomer().getId().equals(customer.getId())) customerOrders.add(order);
-        }
-        return customerOrders;
     }
 }

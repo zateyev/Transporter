@@ -33,12 +33,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Calculation</servlet-name>
-        <servlet-class>com.epam.transporter.servlet.Calculation</servlet-class>
+        <servlet-name>TruckCollector</servlet-name>
+        <servlet-class>com.epam.transporter.servlet.TruckCollector</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Calculation</servlet-name>
-        <url-pattern>/calculation</url-pattern>
+        <servlet-name>TruckCollector</servlet-name>
+        <url-pattern>/truckCollector</url-pattern>
     </servlet-mapping>
 
     <servlet>

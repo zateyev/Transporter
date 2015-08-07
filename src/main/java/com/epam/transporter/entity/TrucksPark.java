@@ -13,6 +13,19 @@ public class TrucksPark {
         return jdbcTruckDao.getTrucksList();
     }
 
+
+
+    public static List<Truck> getSuitableEmptyTrucks(Order order) {
+        Weightiness weightiness = order.getGoods().typeByWeight();
+        List<Truck> truckList = new ArrayList<>();
+        for (Truck truck : getTrucksListFromDb()) {
+            if (truck.typeByLoadCapacity().equals(weightiness) && truck.isEmpty()) {
+                truckList.add(truck);
+            }
+        }
+        return truckList;
+    }
+
     /*public static final List<Truck> getTrucksList() {
         trucks.add(new TruckBuilder()
                 .model("Газель")
@@ -54,5 +67,14 @@ public class TrucksPark {
             }
         }
         throw new TrucksParkException("No trucks suitable to the request");
+    }
+
+    public synchronized static Truck reserveTruck(Long truckId) {
+        DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
+        TruckDao jdbcTruckDao = jdbcDaoFactory.getTruckDao();
+        Truck truck = jdbcTruckDao.findById(truckId);
+        truck.setStatus(TruckStatus.RESERVED);
+        jdbcTruckDao.update(truck);
+        return truck;
     }
 }

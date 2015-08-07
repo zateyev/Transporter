@@ -15,7 +15,28 @@ import static com.epam.transporter.dao.JdbcDaoFactory.freeConnection;
 public class JdbcTruckDao implements TruckDao {
     @Override
     public Truck findById(Long id) {
-        return null;
+        ResultSet resultSet;
+        PreparedStatement preparedStatement;
+        Connection connection = createConnection();
+        try {
+            preparedStatement = connection.prepareStatement("SELECT ID, MODEL, WEIGHT_CAPACITY, VOLUME_CAPACITY, PRICE_PER_KM, STATUS FROM TRUCK WHERE ID = ?");
+            preparedStatement.setLong(1, id);
+            resultSet = preparedStatement.executeQuery();
+            boolean found = resultSet.next();
+            if (!found) return null;
+            String model = resultSet.getString("MODEL");
+            Integer weightCapacity = resultSet.getInt("WEIGHT_CAPACITY");
+            Integer volumeCapacity = resultSet.getInt("VOLUME_CAPACITY");
+            Integer pricePerKm = resultSet.getInt("PRICE_PER_KM");
+            TruckStatus status = TruckStatus.valueOf(resultSet.getString("STATUS"));
+            Truck truck = new Truck(model, weightCapacity, volumeCapacity, pricePerKm, status);
+            truck.setId(id);
+            return truck;
+        } catch (SQLException e) {
+            throw new DaoException();
+        } finally {
+            freeConnection(connection);
+        }
     }
 
     @Override

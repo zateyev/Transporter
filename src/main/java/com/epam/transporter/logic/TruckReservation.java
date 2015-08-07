@@ -13,6 +13,8 @@ public class TruckReservation {
         jdbcTruckDao.update(truck);
     }
 
+
+
     public static void freeTruck(Truck truck) {
         truck.setStatus(TruckStatus.EMPTY);
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);

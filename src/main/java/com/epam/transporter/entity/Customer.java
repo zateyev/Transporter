@@ -1,5 +1,8 @@
 package com.epam.transporter.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer extends User {
     private boolean logged = false;
 
@@ -23,5 +26,13 @@ public class Customer extends User {
 
     public boolean isRegistered() {
         return logged;
+    }
+
+    public List<Order> getOrderListFrom(List<Order> orderList) {
+        List<Order> customerOrders = new ArrayList<>();
+        for (Order order : orderList) {
+            if (order.getCustomer().getId().equals(this.getId())) customerOrders.add(order);
+        }
+        return customerOrders;
     }
 }

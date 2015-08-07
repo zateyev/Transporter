@@ -2,10 +2,7 @@ package com.epam.transporter.servlet;
 
 import com.epam.transporter.dao.DaoFactory;
 import com.epam.transporter.dao.DeliveryPointsDao;
-import com.epam.transporter.entity.Customer;
-import com.epam.transporter.entity.DeliveryPoints;
-import com.epam.transporter.entity.Goods;
-import com.epam.transporter.entity.Order;
+import com.epam.transporter.entity.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
-public class Calculation extends HttpServlet {
+public class TruckCollector extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String startingPoint = request.getParameter("startingPoint");
@@ -33,7 +31,10 @@ public class Calculation extends HttpServlet {
         Goods goods = new Goods(name, Integer.valueOf(weight), Integer.valueOf(volume), Integer.valueOf(cost), comment);
         Order order = new Order(deliveryPoints, goods);
 
+        List<Truck> truckList = TrucksPark.getSuitableEmptyTrucks(order);
+
         HttpSession session = request.getSession(false);
+        session.setAttribute("truckList", truckList);
         session.setAttribute("order", order);
         Customer customer = (Customer) session.getAttribute("customer");
         if (customer == null) {

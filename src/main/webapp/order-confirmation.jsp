@@ -17,7 +17,7 @@
     <%@include file="header.jspf" %>
     <p>Ваш заказ принят</p>
     <p>Для Вас зарезервирован ${truck.model}</p>
-    <p>Стоимость перевозки ${order.price}</p>
+    <p>Стоимость перевозки ${order.deliveryPoints.distance*truck.pricePerKm}</p>
     <%@include file="footer.jspf" %>
 </div>
 </body>
