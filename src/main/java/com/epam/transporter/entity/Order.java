@@ -34,11 +34,6 @@ public class Order {
         return TrucksPark.getTruckByLoadCapacity(weightiness);
     }
 
-    public Integer getPrice() {
-        Truck truck = getSuitableTruck();
-        return deliveryPoints.getDistance() * truck.getPricePerKm();
-    }
-
     public void setGoods(Goods goods) {
         this.goods = goods;
     }

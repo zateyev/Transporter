@@ -18,7 +18,6 @@ public class Runner {
         Order order = orderSaxParser.parseOrder(xmlIn);*/
 
         TruckReservation.reserveTruck(order.getSuitableTruck());
-        System.out.println(order.getPrice());
 //        MarshalOrder marshalOrder = new MarshalOrder();
 //        marshalOrder.convertToXml(order);
 
