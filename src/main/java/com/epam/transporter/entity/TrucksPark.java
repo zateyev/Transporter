@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrucksPark {
-    private static List<Truck> trucks = new ArrayList<>();
-
     public static List<Truck> getTrucksListFromDb() {
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
         TruckDao jdbcTruckDao = jdbcDaoFactory.getTruckDao();

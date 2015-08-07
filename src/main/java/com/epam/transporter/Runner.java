@@ -1,17 +1,12 @@
 package com.epam.transporter;
 
-import com.epam.transporter.entity.Customer;
-import com.epam.transporter.entity.CustomerManager;
-import com.epam.transporter.entity.DeliveryPoints;
-import com.epam.transporter.entity.Goods;
-import com.epam.transporter.entity.Order;
-import com.epam.transporter.logic.Reservation;
+import com.epam.transporter.entity.*;
+import com.epam.transporter.logic.TruckReservation;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class Runner {
-
     public static void main(String[] args) {
         DeliveryPoints deliveryFromTo = new DeliveryPoints("Астана", "Караганды");
         System.out.println(deliveryFromTo.getDistance());
@@ -22,7 +17,7 @@ public class Runner {
         InputStream xmlIn = Runner.class.getClassLoader().getResourceAsStream("order.xml");
         Order order = orderSaxParser.parseOrder(xmlIn);*/
 
-        Reservation.reserveTruck(order.getSuitableTruck());
+        TruckReservation.reserveTruck(order.getSuitableTruck());
         System.out.println(order.getPrice());
 //        MarshalOrder marshalOrder = new MarshalOrder();
 //        marshalOrder.convertToXml(order);

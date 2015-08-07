@@ -5,17 +5,14 @@ import com.epam.transporter.dao.OrderDao;
 import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.Order;
 import com.epam.transporter.entity.Truck;
-import com.epam.transporter.logic.Reservation;
+import com.epam.transporter.logic.TruckReservation;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 public class Book extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +28,7 @@ public class Book extends HttpServlet {
             DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
             OrderDao jdbcOrderDao = jdbcDaoFactory.getOrderDao();
             jdbcOrderDao.insert(order);
-            Reservation.reserveTruck(truck);
+            TruckReservation.reserveTruck(truck);
             session.setAttribute("truck", truck);
             response.sendRedirect(request.getContextPath() + "/order-confirmation.jsp");
         }

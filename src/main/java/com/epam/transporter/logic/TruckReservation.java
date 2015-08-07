@@ -4,7 +4,7 @@ import com.epam.transporter.dao.DaoFactory;
 import com.epam.transporter.dao.TruckDao;
 import com.epam.transporter.entity.*;
 
-public class Reservation {
+public class TruckReservation {
 
     public static void reserveTruck(Truck truck) {
         truck.setStatus(TruckStatus.RESERVED);
