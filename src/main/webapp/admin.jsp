@@ -24,6 +24,7 @@
         </ul>
         <h1 class="text-muted">Transporter</h1>
     </div>
+    <c:catch var="constraintException">
     <form action="${pageContext.request.contextPath}/orderStatusChanger" method="post">
         <div class="list">
             <h3>Список заказов</h3>
@@ -96,6 +97,11 @@
             <button class="btn btn-info pull-right">Изменить статусы</button>
         </div>
     </form>
+    </c:catch>
+    <c:if test="${not empty constraintException}">
+        <c:redirect url="forbidden.jsp" />
+        <h1>Forbidden</h1>
+    </c:if>
     <%@include file="footer.jspf" %>
 </div>
 </body>
