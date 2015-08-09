@@ -1,2 +1,2 @@
 # Transporter
-The system for the service of delivery. The user fills out a form, indicating the loading and unloading points, cargo weight and time of sending. The Administrator consider the submitted order, offers the most suitable transport from available, and then the system invoices bills to the client.
+The system for delivery services. The customer fills out a form indicating cargo weight, the points of loading and unloading. The web application provides a list of suitable cargo transports with the transportation cost. The customer can choose the desired transport and reserve it. Administrator monitors the list of orders and trucks and manages their status.
