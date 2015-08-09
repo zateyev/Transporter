@@ -1,14 +1,13 @@
 package com.epam.transporter.entity;
 
-public class Truck {
-    private Long id;
+public class Truck extends BaseEntity {
     private String model;
     private Integer capacityByWeight;
     private Integer capacityByVolume;
     private Integer pricePerKm;
-    private TruckStatus status;
+    private Status status;
 
-    public Truck(String model, Integer capacityByWeight, Integer capacityByVolume, Integer pricePerKm, TruckStatus status) {
+    public Truck(String model, Integer capacityByWeight, Integer capacityByVolume, Integer pricePerKm, Status status) {
         this.model = model;
         this.capacityByWeight = capacityByWeight;
         this.capacityByVolume = capacityByVolume;
@@ -41,16 +40,6 @@ public class Truck {
         this.capacityByWeight = capacityByWeight;
     }
 
-
-    /*Truck(final TruckBuilder truckBuilder) {
-        this.id = truckBuilder.getId();
-        this.model = truckBuilder.getModel();
-        this.capacityByWeight = truckBuilder.getCapacityByWeight();
-        this.capacityByVolume = truckBuilder.getCapacityByVolume();
-        this.pricePerKm = truckBuilder.getPricePerKm();
-        this.status = truckBuilder.getStatus();
-    }*/
-
     public Integer getCapacityByVolume() {
         return capacityByVolume;
     }
@@ -67,23 +56,19 @@ public class Truck {
         this.pricePerKm = pricePerKm;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getStatus() {
         return String.valueOf(status);
     }
 
-    public void setStatus(TruckStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
     public boolean isEmpty() {
-        return this.status == TruckStatus.EMPTY;
+        return this.status == Status.EMPTY;
+    }
+
+    public enum Status {
+        EMPTY, RESERVED, DEFECTIVE
     }
 }

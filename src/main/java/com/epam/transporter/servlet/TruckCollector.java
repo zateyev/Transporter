@@ -23,25 +23,21 @@ public class TruckCollector extends HttpServlet {
         String volume = request.getParameter("volume");
         String cost = request.getParameter("cost");
         String comment = request.getParameter("comment");
-
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
         DeliveryPointsDao jdbcDeliveryPointsDao = jdbcDaoFactory.getDeliveryPointsDao();
         DeliveryPoints deliveryPoints = jdbcDeliveryPointsDao.findByPoints(startingPoint, destination);
-
         Goods goods = new Goods(name, Integer.valueOf(weight), Integer.valueOf(volume), Integer.valueOf(cost), comment);
         Order order = new Order(deliveryPoints, goods);
-
         List<Truck> truckList = TrucksPark.getSuitableEmptyTrucks(order);
-
         HttpSession session = request.getSession(false);
         session.setAttribute("truckList", truckList);
         session.setAttribute("order", order);
-        Customer customer = (Customer) session.getAttribute("customer");
-        if (customer == null) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");
             dispatcher.forward(request, response);
         } else {
-            if (customer.isRegistered()) {
+            if (user.isRegistered()) {
                 response.sendRedirect(request.getContextPath() + "/book.jsp");
             } else {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/info.jsp");

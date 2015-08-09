@@ -1,7 +1,6 @@
 package com.epam.transporter.servlet;
 
 import com.epam.transporter.dao.DaoFactory;
-import com.epam.transporter.dao.OrderDao;
 import com.epam.transporter.dao.TruckDao;
 import com.epam.transporter.entity.*;
 
@@ -20,7 +19,7 @@ public class TruckStatusChanger extends HttpServlet {
         for (Truck truck : trucksList) {
             String status = request.getParameter("status" + truck.getId());
             if (!status.equals(truck.getStatus())) {
-                truck.setStatus(TruckStatus.valueOf(status));
+                truck.setStatus(Truck.Status.valueOf(status));
                 DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
                 TruckDao jdbcTruckDao = jdbcDaoFactory.getTruckDao();
                 jdbcTruckDao.update(truck);

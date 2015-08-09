@@ -1,4 +1,4 @@
-<%--@elvariable id="customer" type="com.epam.transporter.entity.Customer"--%>
+<%--@elvariable id="user" type="com.epam.transporter.entity.User"--%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,7 +21,7 @@
     <div class="header">
         <ul class="nav nav-pills pull-right">
             <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
-            <li><a href="#">${customer.firstName}</a></li>
+            <li><a href="#">${user.firstName}</a></li>
             <li><a href="my-orders.jsp">Мои заказы</a></li>
             <li>
                 <form method="get" action="${pageContext.request.contextPath}/logout">

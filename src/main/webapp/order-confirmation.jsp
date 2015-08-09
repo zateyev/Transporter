@@ -1,4 +1,4 @@
-<%--@elvariable id="customer" type="com.epam.transporter.entity.Customer"--%>
+<%--@elvariable id="user" type="com.epam.transporter.entity.User"--%>
 <%--@elvariable id="truck" type="com.epam.transporter.entity.Truck"--%>
 <%--@elvariable id="order" type="com.epam.transporter.entity.Order"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

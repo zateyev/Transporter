@@ -1,4 +1,4 @@
-<%--@elvariable id="customer" type="com.epam.transporter.entity.Customer"--%>
+<%--@elvariable id="user" type="com.epam.transporter.entity.User"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
     <div class="header">
         <ul class="nav nav-pills pull-right">
             <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Главная</a></li>
-            <li><a href="#">${customer.firstName}</a></li>
+            <li><a href="#">${user.firstName}</a></li>
             <li>
                 <form method="get" action="${pageContext.request.contextPath}/logout">
                     <button class="btn btn-default navbar-btn">Выйти</button>
@@ -43,7 +43,7 @@
                     <td>${order.goods.name}</td>
                     <td>${order.deliveryPoints.startingPoint}</td>
                     <td>${order.deliveryPoints.destination}</td>
-                    <td>${order.customer.firstName}</td>
+                    <td>${order.user.firstName}</td>
                     <td>
                         <select name="status${order.id}" id="0">
                             <option value="${order.status}">${order.status}</option>

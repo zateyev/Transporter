@@ -8,14 +8,13 @@ import javax.xml.bind.annotation.*;
         "deliveryPoints",
         "goods"
 })
-public class Order {
+public class Order extends BaseEntity {
     @XmlElement(name = "deliveryPoints", required = true)
     private DeliveryPoints deliveryPoints;
     @XmlElement(name = "goods", required = true)
     private Goods goods;
-    private Long id;
-    private OrderStatus status;
-    private Customer customer;
+    private Status status;
+    private User user;
 
     public Order() {
     }
@@ -29,13 +28,13 @@ public class Order {
         return goods;
     }
 
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
     public Truck getSuitableTruck() {
         Weightiness weightiness = goods.typeByWeight();
         return TrucksPark.getTruckByLoadCapacity(weightiness);
-    }
-
-    public void setGoods(Goods goods) {
-        this.goods = goods;
     }
 
     public DeliveryPoints getDeliveryPoints() {
@@ -46,27 +45,23 @@ public class Order {
         this.deliveryPoints = deliveryPoints;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public User getUser() {
+        return user;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getStatus() {
         return String.valueOf(status);
     }
 
-    public void setStatus(OrderStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Long getId() {
-        return id;
+    public enum Status {
+        NEW, IN_WORK, WORKED_OUT, CANCELED
     }
 }

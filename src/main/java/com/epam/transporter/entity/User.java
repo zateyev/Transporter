@@ -1,14 +1,15 @@
 package com.epam.transporter.entity;
 
-public abstract class User {
+import java.util.ArrayList;
+import java.util.List;
+
+public class User extends BaseEntity {
     private String firstName;
-    private String lastName;
-    private String phoneNumber;
     private String email;
     private String login;
     private String password;
-    private Long id;
-    private UserRole userRole;
+    private Role role;
+    private boolean logged = false;
 
     public String getFirstName() {
         return firstName;
@@ -16,22 +17,6 @@ public abstract class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -50,27 +35,39 @@ public abstract class User {
         this.login = login;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setLogged(boolean logged) {
+        this.logged = logged;
+    }
+
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
+    public boolean isRegistered() {
+        return logged;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public List<Order> getOrderListFrom(List<Order> orderList) {
+        List<Order> customerOrders = new ArrayList<>();
+        for (Order order : orderList) {
+            if (order.getUser().getId().equals(this.getId())) customerOrders.add(order);
+        }
+        return customerOrders;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public enum Role {
+        ADMIN, CUSTOMER, MODERATOR
     }
 }

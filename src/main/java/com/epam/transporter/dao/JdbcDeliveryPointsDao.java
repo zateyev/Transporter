@@ -1,6 +1,5 @@
 package com.epam.transporter.dao;
 
-import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.DeliveryPoints;
 
 import java.sql.Connection;
@@ -35,8 +34,7 @@ public class JdbcDeliveryPointsDao implements DeliveryPointsDao {
             return deliveryPoints;
         } catch (SQLException e) {
             throw new DaoException();
-        }
-        finally {
+        } finally {
             freeConnection(connection);
         }
     }

@@ -1,7 +1,6 @@
 package com.epam.transporter.dao;
 
-import com.epam.transporter.entity.Customer;
-import com.epam.transporter.entity.UserRole;
+import com.epam.transporter.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,28 +10,28 @@ import java.sql.SQLException;
 import static com.epam.transporter.dao.JdbcDaoFactory.*;
 import static com.epam.transporter.dao.JdbcDaoFactory.freeConnection;
 
-public class JdbcCustomerDao implements CustomerDao {
-
-    public JdbcCustomerDao() {
+public class JdbcUserDao implements UserDao {
+    public JdbcUserDao() {
     }
 
     @Override
-    public Customer findById(Long id) {
+    public User findById(Long id) {
         ResultSet resultSet;
         PreparedStatement preparedStatement;
         Connection connection = createConnection();
         try {
-            preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD FROM CUSTOMER WHERE ID = ?");
+            preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD, ROLE FROM USER WHERE ID = ?");
             preparedStatement.setLong(1, id);
             resultSet = preparedStatement.executeQuery();
             boolean found = resultSet.next();
             if (!found) return null;
-            Customer customer = new Customer();
-            customer.setId(id);
-            customer.setFirstName(resultSet.getString("FIRSTNAME"));
-            customer.setEmail(resultSet.getString("EMAIL"));
-            customer.setPassword(resultSet.getString("PASSWORD"));
-            return customer;
+            User user = new User();
+            user.setId(id);
+            user.setFirstName(resultSet.getString("FIRSTNAME"));
+            user.setEmail(resultSet.getString("EMAIL"));
+            user.setPassword(resultSet.getString("PASSWORD"));
+            user.setRole(User.Role.valueOf(resultSet.getString("ROLE")));
+            return user;
         } catch (SQLException e) {
             throw new DaoException();
         } finally {
@@ -41,23 +40,23 @@ public class JdbcCustomerDao implements CustomerDao {
     }
 
     @Override
-    public Customer findByEmail(String email) {
+    public User findByEmail(String email) {
         ResultSet resultSet;
         PreparedStatement preparedStatement;
         Connection connection = createConnection();
         try {
-            preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD, ROLE FROM CUSTOMER WHERE EMAIL = ?");
+            preparedStatement = connection.prepareStatement("SELECT ID, FIRSTNAME, EMAIL, PASSWORD, ROLE FROM USER WHERE EMAIL = ?");
             preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
             boolean found = resultSet.next();
             if (!found) return null;
-            Customer customer = new Customer();
-            customer.setId(resultSet.getLong("ID"));
-            customer.setFirstName(resultSet.getString("FIRSTNAME"));
-            customer.setEmail(resultSet.getString("EMAIL"));
-            customer.setPassword(resultSet.getString("PASSWORD"));
-            customer.setUserRole(UserRole.valueOf(resultSet.getString("ROLE")));
-            return customer;
+            User user = new User();
+            user.setId(resultSet.getLong("ID"));
+            user.setFirstName(resultSet.getString("FIRSTNAME"));
+            user.setEmail(resultSet.getString("EMAIL"));
+            user.setPassword(resultSet.getString("PASSWORD"));
+            user.setRole(User.Role.valueOf(resultSet.getString("ROLE")));
+            return user;
         } catch (SQLException e) {
             throw new DaoException(e);
         } finally {
@@ -66,42 +65,43 @@ public class JdbcCustomerDao implements CustomerDao {
     }
 
     @Override
-    public void update(Customer customer) {
+    public void update(User user) {
     }
 
     @Override
-    public Customer save(Customer customer) {
+    public User save(User user) {
         return null;
     }
 
     @Override
-    public Customer merge(Customer customer) {
+    public User merge(User user) {
         return null;
     }
 
     @Override
-    public Customer insert(Customer customer) {
+    public User insert(User user) {
         Connection connection = createConnection();
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(
-                    "INSERT INTO CUSTOMER (ID, FIRSTNAME, EMAIL, PASSWORD) VALUES (DEFAULT, ?, ?, ?)");
-            preparedStatement.setString(1, customer.getFirstName());
-            preparedStatement.setString(2, customer.getEmail());
-            preparedStatement.setString(3, customer.getPassword());
+                    "INSERT INTO USER (ID, FIRSTNAME, EMAIL, PASSWORD, ROLE) VALUES (DEFAULT, ?, ?, ?, ?)");
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, String.valueOf(user.getRole()));
             preparedStatement.executeUpdate();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             generatedKeys.next();
             long id = generatedKeys.getLong(1);
-            customer.setId(id);
+            user.setId(id);
         } catch (SQLException e) {
             throw new DaoException(e);
         }
-        return customer;
+        return user;
     }
 
     @Override
-    public boolean remove(Customer customer) {
+    public boolean remove(User user) {
         return false;
     }
 

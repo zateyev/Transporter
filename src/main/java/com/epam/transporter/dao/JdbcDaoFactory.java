@@ -10,12 +10,19 @@ public class JdbcDaoFactory extends DaoFactory {
     public static final String USER = "transporter";
     public static final String PASSWORD = "transporter";
     public static final int MAX_CONNECTION = 5;
-
     private static ConnectionPool connectionPool = ConnectionPool.getInstance(DRIVER_NAME, URL, USER, PASSWORD, MAX_CONNECTION);
 
+    public static Connection createConnection() {
+        return connectionPool.getConnection();
+    }
+
+    public static void freeConnection(Connection connection) {
+        connectionPool.freeConnection(connection);
+    }
+
     @Override
-    public CustomerDao getCustomerDao() {
-        return new JdbcCustomerDao();
+    public UserDao getUserDao() {
+        return new JdbcUserDao();
     }
 
     @Override
@@ -36,13 +43,5 @@ public class JdbcDaoFactory extends DaoFactory {
     @Override
     public TruckDao getTruckDao() {
         return new JdbcTruckDao();
-    }
-
-    public static Connection createConnection() {
-        return connectionPool.getConnection();
-    }
-
-    public static void freeConnection(Connection connection) {
-        connectionPool.freeConnection(connection);
     }
 }

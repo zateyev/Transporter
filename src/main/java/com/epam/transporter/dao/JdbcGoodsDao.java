@@ -1,6 +1,5 @@
 package com.epam.transporter.dao;
 
-import com.epam.transporter.entity.Customer;
 import com.epam.transporter.entity.Goods;
 
 import java.sql.Connection;

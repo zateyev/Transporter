@@ -18,15 +18,13 @@ public class UploadServlet extends MainServlet {
         String fileName = filePart.getSubmittedFileName();
         InputStream fileContent = filePart.getInputStream();
         OutputStream outputStream = new FileOutputStream(new File("D:\\trucks.xml"));
-
         int read;
         byte[] bytes = new byte[1024];
-        while ((read = fileContent.read(bytes)) != -1){
+        while ((read = fileContent.read(bytes)) != -1) {
             outputStream.write(bytes, 0, read);
         }
         fileContent.close();
         outputStream.close();
-
         String xsdDescription = request.getParameter("xsd-description");
         Part xsdFilePart = request.getPart("xsd-file");
         String xsdFileName = xsdFilePart.getSubmittedFileName();
@@ -34,7 +32,7 @@ public class UploadServlet extends MainServlet {
         OutputStream xsdOutputStream = new FileOutputStream(new File("D:\\trucks.xsd"));
         int read2;
         byte[] bytes2 = new byte[1024];
-        while ((read2 = xsdFileContent.read(bytes2)) != -1){
+        while ((read2 = xsdFileContent.read(bytes2)) != -1) {
             xsdOutputStream.write(bytes2, 0, read2);
         }
         xsdFileContent.close();

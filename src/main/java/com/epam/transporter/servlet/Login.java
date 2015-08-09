@@ -1,13 +1,12 @@
 package com.epam.transporter.servlet;
 
-import com.epam.transporter.dao.CustomerDao;
+import com.epam.transporter.dao.UserDao;
 import com.epam.transporter.dao.DaoFactory;
 import com.epam.transporter.dao.OrderDao;
 import com.epam.transporter.dao.TruckDao;
-import com.epam.transporter.entity.Customer;
+import com.epam.transporter.entity.User;
 import com.epam.transporter.entity.Order;
 import com.epam.transporter.entity.Truck;
-import com.epam.transporter.entity.UserRole;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,33 +22,29 @@ public class Login extends MainServlet {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
-        CustomerDao jdbcCustomerDao = jdbcDaoFactory.getCustomerDao();
-        Customer customer = jdbcCustomerDao.findByEmail(email);
-
-        if (customer.getPassword().equals(password)) {
-            customer.setLogged(true);
+        UserDao jdbcUserDao = jdbcDaoFactory.getUserDao();
+        User user = jdbcUserDao.findByEmail(email);
+        if (user.getPassword().equals(password)) {
+            user.setLogged(true);
             HttpSession session = request.getSession(true);
-            session.setAttribute("customer", customer);
+            session.setAttribute("user", user);
             OrderDao jdbcOrderDao = jdbcDaoFactory.getOrderDao();
             List<Order> orderList = jdbcOrderDao.getOrderList();
-            if (customer.getUserRole().equals(UserRole.ADMIN)) {
+            if (user.getRole().equals(User.Role.ADMIN)) {
                 session.setAttribute("orderList", orderList);
                 TruckDao jdbcTruckDao = jdbcDaoFactory.getTruckDao();
                 List<Truck> trucksList = jdbcTruckDao.getTrucksList();
                 session.setAttribute("trucksList", trucksList);
                 response.sendRedirect(request.getContextPath() + "/admin.jsp");
             } else {
-                List<Order> customerOrders = customer.getOrderListFrom(orderList);
+                List<Order> customerOrders = user.getOrderListFrom(orderList);
                 session.setAttribute("customerOrders", customerOrders);
                 response.sendRedirect(request.getContextPath() + "/welcome.jsp");
             }
-        }
-        else {
-            customer.setLogged(false);
-
-            request.setAttribute("customer", customer);
+        } else {
+            user.setLogged(false);
+            request.setAttribute("user", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
             dispatcher.forward(request, response);
         }

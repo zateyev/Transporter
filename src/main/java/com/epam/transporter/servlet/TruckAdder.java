@@ -3,7 +3,6 @@ package com.epam.transporter.servlet;
 import com.epam.transporter.dao.DaoFactory;
 import com.epam.transporter.dao.TruckDao;
 import com.epam.transporter.entity.Truck;
-import com.epam.transporter.entity.TruckStatus;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +23,7 @@ public class TruckAdder extends HttpServlet {
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
         TruckDao jdbcTruckDao = jdbcDaoFactory.getTruckDao();
         Truck truck = jdbcTruckDao.insert(
-                new Truck(model, Integer.valueOf(capacityByWeight), Integer.valueOf(capacityByVolume), Integer.valueOf(pricePerKm), TruckStatus.valueOf(status)));
+                new Truck(model, Integer.valueOf(capacityByWeight), Integer.valueOf(capacityByVolume), Integer.valueOf(pricePerKm), Truck.Status.valueOf(status)));
         HttpSession session = request.getSession(false);
         List<Truck> trucksList = (List<Truck>) session.getAttribute("trucksList");
         trucksList.add(truck);
@@ -34,6 +33,5 @@ public class TruckAdder extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-
     }
 }

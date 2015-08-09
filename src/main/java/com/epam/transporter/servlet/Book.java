@@ -2,11 +2,10 @@ package com.epam.transporter.servlet;
 
 import com.epam.transporter.dao.DaoFactory;
 import com.epam.transporter.dao.OrderDao;
-import com.epam.transporter.entity.Customer;
+import com.epam.transporter.entity.User;
 import com.epam.transporter.entity.Order;
 import com.epam.transporter.entity.Truck;
 import com.epam.transporter.entity.TrucksPark;
-import com.epam.transporter.logic.TruckReservation;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,14 +20,14 @@ public class Book extends HttpServlet {
         String truckId = request.getParameter("truckId");
         HttpSession session = request.getSession(false);
         Order order = (Order) session.getAttribute("order");
-        Customer customer = (Customer) session.getAttribute("customer");
-        order.setCustomer(customer);
+        User user = (User) session.getAttribute("user");
+        order.setUser(user);
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
         OrderDao jdbcOrderDao = jdbcDaoFactory.getOrderDao();
         jdbcOrderDao.insert(order);
         Truck truck = TrucksPark.reserveTruck(Long.valueOf(truckId));
         List<Order> orderList = jdbcOrderDao.getOrderList();
-        List<Order> customerOrders = customer.getOrderListFrom(orderList);
+        List<Order> customerOrders = user.getOrderListFrom(orderList);
         session.setAttribute("customerOrders", customerOrders);
         session.setAttribute("truck", truck);
         response.sendRedirect(request.getContextPath() + "/order-confirmation.jsp");

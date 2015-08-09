@@ -28,7 +28,7 @@ public class JdbcTruckDao implements TruckDao {
             Integer weightCapacity = resultSet.getInt("WEIGHT_CAPACITY");
             Integer volumeCapacity = resultSet.getInt("VOLUME_CAPACITY");
             Integer pricePerKm = resultSet.getInt("PRICE_PER_KM");
-            TruckStatus status = TruckStatus.valueOf(resultSet.getString("STATUS"));
+            Truck.Status status = Truck.Status.valueOf(resultSet.getString("STATUS"));
             Truck truck = new Truck(model, weightCapacity, volumeCapacity, pricePerKm, status);
             truck.setId(id);
             return truck;
@@ -97,7 +97,7 @@ public class JdbcTruckDao implements TruckDao {
                 Integer weightCapacity = resultSet.getInt("WEIGHT_CAPACITY");
                 Integer volumeCapacity = resultSet.getInt("VOLUME_CAPACITY");
                 Integer pricePerKm = resultSet.getInt("PRICE_PER_KM");
-                TruckStatus status = TruckStatus.valueOf(resultSet.getString("STATUS"));
+                Truck.Status status = Truck.Status.valueOf(resultSet.getString("STATUS"));
                 Truck truck = new Truck(model, weightCapacity, volumeCapacity, pricePerKm, status);
                 truck.setId(trucksId);
                 truckList.add(truck);

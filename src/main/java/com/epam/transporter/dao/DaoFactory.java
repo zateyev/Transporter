@@ -12,7 +12,7 @@ public abstract class DaoFactory {
         }
     }
 
-    public abstract CustomerDao getCustomerDao();
+    public abstract UserDao getUserDao();
 
     public abstract DeliveryPointsDao getDeliveryPointsDao();
 

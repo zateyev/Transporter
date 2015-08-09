@@ -43,7 +43,7 @@ public class DeliveryPoints {
     }
 
     public int getDistance() {
-        if (distance!=0) return distance;
+        if (distance != 0) return distance;
         DaoFactory jdbcDaoFactory = DaoFactory.getDaoFactory(DaoFactory.JDBC);
         DeliveryPointsDao jdbcDeliveryPointsDao = jdbcDaoFactory.getDeliveryPointsDao();
         DeliveryPoints deliveryPoints = jdbcDeliveryPointsDao.findByPoints(startingPoint, destination);
